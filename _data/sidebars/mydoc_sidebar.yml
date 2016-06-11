@@ -1,0 +1,93 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  product: CMOR
+  version: 3
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage/
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage/
+      output: pdf
+      type: frontmatter
+
+  - title: Overview
+    output: web, pdf
+    folderitems:
+
+    - title: Get started
+      url: /
+      type: homepage
+      output: web, pdf
+
+    - title: CMOR API
+      url: /mydoc_cmor3_api/
+      output: web, pdf
+
+    - title: Acknowledgements
+      url: /acknowledgements/
+      output: web, pdf
+
+
+  - title: Installation
+    output: web, pdf
+    folderitems:
+
+    - title: Anaconda
+      url: /mydoc_cmor3_conda/
+      output: web, pdf
+
+    - title: GitHub
+      url: /mydoc_cmor3_github/
+      output: web, pdf
+
+  - title: Examples
+    output: web, pdf
+    folderitems:
+
+    - title: Python
+      url: /mydoc_cmor3_conda/
+      output: web, pdf
+
+    - title: Fortran
+      url: /mydoc_cmor3_github/
+      output: web, pdf
+
+    - title: C
+      url: /mydoc_cmor3_github/
+      output: web, pdf
+
+
+  - title: Appendix
+    output: web, pdf
+    folderitems:
+
+    - title: CMIP6 table Excerpt
+      url: /mydoc_cmip6_table_except/
+      output: web, pdf
+
+    - title: CMIP6 required Global Attributes
+      url: /mydoc_cmip6_global_attributes/
+      output: web, pdf
+
+    - title: CMIP6 User Input
+      url: /mydoc_CMIP6_user_input/
+      output: web, pdf
+
+  - title: Troubleshooting
+    output: web, pdf
+    
+    folderitems:
+
+    - title: Troubleshooting
+      url: /mydoc_troubleshooting/
+      output: web, pdf
+

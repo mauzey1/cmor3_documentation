@@ -1,0 +1,24 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: Sidebar
+  levels: one
+  folders:
+
+  - title: Overview
+    output: web
+    folderitems:
+    - title: Getting Started
+      url: /
+      output: web
+      type: homepage
+    - title: News
+      url: /news/
+      output: web
+    - title: Reference
+      url: /reference/
+      output: web
+    - title: Acknowledgements
+      url: /acknowledgements/
+      output: web
+
