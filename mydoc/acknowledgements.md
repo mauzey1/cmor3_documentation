@@ -2,7 +2,7 @@
 title: Acknowledgements
 tags: [acknowledgements]
 keywords: acknowledgements
-sidebar: acknowledgements
+sidebar: mydoc_sidebar
 permalink: /acknowledgements/
 ---
 ### Acknowledgements

@@ -54,15 +54,15 @@ entries:
     folderitems:
 
     - title: Python
-      url: /mydoc_cmor3_conda/
+      url: /mydoc_cmor3_python/
       output: web, pdf
 
     - title: Fortran
-      url: /mydoc_cmor3_github/
+      url: /mydoc_cmor3_fortran/
       output: web, pdf
 
     - title: C
-      url: /mydoc_cmor3_github/
+      url: /mydoc_cmor3_c/
       output: web, pdf
 
 
@@ -71,7 +71,7 @@ entries:
     folderitems:
 
     - title: CMIP6 table Excerpt
-      url: /mydoc_cmip6_table_except/
+      url: /mydoc_cmip6_table_excerpt/
       output: web, pdf
 
     - title: CMIP6 required Global Attributes
@@ -79,8 +79,17 @@ entries:
       output: web, pdf
 
     - title: CMIP6 User Input
-      url: /mydoc_CMIP6_user_input/
+      url: /mydoc_cmip6_user_input/
       output: web, pdf
+
+    - title: Appendix A 
+      url: /mydoc_appendix_A/
+      output: web, pdf
+
+    - title: Appendix B 
+      url: /mydoc_appendix_B/
+      output: web, pdf
+
 
   - title: Troubleshooting
     output: web, pdf

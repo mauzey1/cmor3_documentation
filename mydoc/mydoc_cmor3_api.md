@@ -7,7 +7,7 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_api/
 ---
 
-### cmor_setup
+### cmor_setup()
 
 <span style="color:green">
 Fortran: error_flag = cmor_setup(inpath='./', netcdf_file_action=CMOR_PRESERVE, set_verbosity=CMOR_NORMAL, exit_control=CMOR_NORMAL, logfile, create_subdirectories)</span>
@@ -44,7 +44,17 @@ Fortran: error_flag = cmor_setup(inpath='./', netcdf_file_action=CMOR_PRESERVE, 
 
 ---
 
-### cmor_get_cur_dataset_attribute
+### cmor_dataset_json()
+
+<span style="color:green"> Fortran: cmor_dataset_json(filename) </span>
+
+<span style="color:blue"> C: cmor_dataset_json(char *name) </span>
+
+<span style="color:coral"> Python: dataset_json(name) </span>
+
+---
+
+### cmor_get_cur_dataset_attribute()
 
 <span style="color:green"> Fortran: error_flag = cmor_get_cur_dataset_attribute(name,result) </span>
 
@@ -68,7 +78,7 @@ Returns upon success:
 
 ---
 
-### cmor_has_cur_dataset_attribute
+### cmor_has_cur_dataset_attribute()
 
 <span style="color:green"> Fortran: error_flag = cmor_has_cur_dataset_attribute(name)</span>
 
@@ -90,7 +100,7 @@ Returns:
 
 ---
 
-### cmor_load_table
+### cmor_load_table()
 
 <span style="color:green"> Fortran: table_id = cmor_load_table(table) </span>
 
@@ -104,7 +114,7 @@ Loads a table and returns a “handle” (table_id) to use later when defining C
 
 ---
 
-### cmor_set_table
+### cmor_set_table()
 
 <span style="color:green">Fortran: cmor_set_table(table_id)</span>
 
@@ -113,6 +123,429 @@ Loads a table and returns a “handle” (table_id) to use later when defining C
 <span style="color:coral">Python: table_id = set_table(table_id)</span>
 
 **Description:** Sets the table referred to by table_id as the table to obtain needed information when defining CMOR components (variables, axes, grids, etc…).
+
+---
+
+### cmor_set_grid_mapping()
+
+<span style="color:green">Fortran: error_flag = cmor_set_grid_mapping(grid_id, mapping_name, parameter_names, parameter_values, parameter_units)</span>
+
+<span style="color:blue">C: error_flag = cmor_set_grid_mapping(int grid_id, char *mapping_name, int nparameters, char **parameter_names, int lparameters, double parameter_values[], char **parameter_units, int lunits) </span>
+
+<span style="color:coral">Python: set_grid_mapping(grid_id, mapping_name, parameter_names, parameter_values=None, parameter_units=None) </span>
+
+
+*Description*: Define the grid mapping parameters associated with a grid (see CF conventions for more info on which parameters to set). Check validity of parameter names and units. Additional mapping names and parameter names can be defined via the MIP table.
+
+
+*Arguments*:
+
+* *grid_id* = the “handle” returned by a previous call to cmor_grid, indicating which grid the mapping parameters should be associated with.
+
+* *mapping_name* = name of the mapping (see CF conventions). This name dictates which parameters should be set and for some parameters restricts their possible values or range. New mapping names can be added via MIP tables.
+
+* *nparameters* = number of parameters set.
+
+* *parameter_names* = array (list for Python) of strings containing the names of the parameters to set. In the case of “standard_parallel”, CF allows either 1 or 2 parallels to be specified (i.e. the attribute standard_parallel may be an array of length 2). In the case of 2 parallels, CMOR requires the user to specify these as separate parameters, named standard_parallel_1 and standard_parallel_2, but then the two parameters will be stored in an array, consistent with CF. In the case of a single parallel, the name standard_parallel should be specified. In the C version of this function, parameter_names is declared of length [nparameters][lparameters], where lparameters in the length of each string array element (see below). In Python parameter_names can be defined as a dictionary containing the keys that represent the parameter_names. The value associated with each key can be either a list [float, str] (or [str, float]) representing the value/units of each parameter, or another dictionary containing the keys “value” and “units”. If these conditions are fulfilled, then parameter_units and parameter_values are optional and would be ignored if passed.
+
+* *lparameters* = length of each element of the string array. If, for example, parameter_names includes 5 parameters, each 24 characters long (i.e., it is declared [5][24]), you would pass lparameters=24.
+
+* *parameter_values* = array containing the values associated with each parameter. In Python this is optional if parameter_names is a dictionary containing the values and units.
+
+* *parameter_units* = array (list for Python) of string containing the units of the parameters to set. In C parameter_units is declared of length [nparameters][lunits]. In Python it is optional if parameter_names is a dictionary containing the value and units.
+
+* *lunits* = length of each elements of the units string array (e.g., if parameters_units is declared [5][24], you would pass 24 because each elements has 24 characters).
+
+Returns upon success:
+
+* <span style="color:green">Fortran: 0</span>
+* <span style="color:blue">C: 0</span>
+* <span style="color:coral">Python: None</span>
+
+
+---
+
+### cmor_time_varying_grid_coordinate()
+
+<span style="color:green">Fortran: coord_var_id = cmor_time_varying_grid_coordinate(grid_id, table_entry, units, missing_value)</span>
+
+<span style="color:blue">C: error_flag = cmor_time_varying_grid_coordinate(int *coord_var_id, int grid_id, char *table_entry, char *units, char type, void *missing, [int *coordinate_type]) {</span>
+
+<span style="color:coral">Python: coord_var_id = time_varying_grid_coordinate(grid_id, table_entry, units, [missing_value])</span>
+
+
+*Description*: Define a grid to be associated with data, including the latitude and longitude arrays. Note that in CMIP5 this function must be called to store the variables called for in the cf3hr MIP table. The grid can be structured with up to 6 dimensions. These dimensions, which may be simple “index” axes, must be defined via cmor_axis prior to calling cmor_grid. This function returns a "handle" (grid_id) that uniquely identifies the grid (and its data/metadata) to be written. The grid_id will subsequently be passed by the user to other CMOR functions. The cmor_grid function will typically be invoked to define each grid necessary for the experiment (e.g., ocean grid, vegetation grid, atmosphere grid, etc.). There is no need to call this function in the case of a Cartesian lat/lon grid. In this case, simply define the latitude and longitude axes and pass their id’s (“handles”) to cmor_variable.
+
+
+*Arguments:*
+
+* *coord_var_id* = the “handle”: a positive integer returned by this function, which uniquely identifies the variable and can be used in subsequent calls to CMOR.
+
+* *grid_id* = the value returned by cmor_grid when the grid was created.
+
+* *table_entry* = name of the variable (as it appears in the MIP table) that this function defines.
+
+* *units* = units of the data that will be passed to CMOR by function cmor_write. These units may differ from the units of the data output by CMOR. Whenever possible, this string should be interpretable by udunits (see http://my.unitdata.ucar.edu/content/software/udunits/). In the case of dimensionless quantities the units should be specified consistent with the CF conventions, so for example: percent, units='percent'; for a fraction, units='1'; for parts per million, units='1e-6', etc.).
+
+* *type* = type of the missing_value, which must be the same as the type of the array that will be passed to cmor_write. The options are: ‘d’ (double), ‘f’ (float), ‘l’ (long) or ‘i’ (int).
+
+* *[missing_value]* = scalar that is used to indicate missing data for this variable. It must be the same type as the data that will be passed to cmor_write. This missing_value will in general be replaced by a standard missing_value specified in the MIP table. If there are no missing data, and the user chooses not to declare the missing value, then this argument may be omitted.
+
+* *[coordinate_type]* = place holder for future implementation, unused, pass NULL
+
+
+*Returns*:
+
+* <span style="color:green">Fortran: a positive integer if an error is encountered; otherwise returns a negative integer (the “handle”) uniquely identifying the grid. </span>
+
+* <span style="color:blue">C: 0 upon success. </span>
+
+* <span style="color:coral">Python: upon success, a positive integer (the “handle”) uniquely identifying the axis, or if an error is encountered an exception is raised. </span>
+
+---
+
+### cmor_time_varying_grid_coordinate()
+
+
+<span style ="color:green">Fortran: coord_var_id = cmor_time_varying_grid_coordinate(grid_id, table_entry, units, missing_value)</span>
+
+<span style ="color:blue">C: error_flag = cmor_time_varying_grid_coordinate(int *coord_var_id, int grid_id, char *table_entry, char *units, char type, void *missing, [int *coordinate_type]) {</span>
+
+<span style ="color:coral">Python: coord_var_id = time_varying_grid_coordinate(grid_id, table_entry, units, [missing_value])</span>
+
+
+*Description*: Define a grid to be associated with data, including the latitude and longitude arrays. Note that in CMIP5 this function must be called to store the variables called for in the cf3hr MIP table. The grid can be structured with up to 6 dimensions. These dimensions, which may be simple “index” axes, must be defined via cmor_axis prior to calling cmor_grid. This function returns a "handle" (grid_id) that uniquely identifies the grid (and its data/metadata) to be written. The grid_id will subsequently be passed by the user to other CMOR functions. The cmor_grid function will typically be invoked to define each grid necessary for the experiment (e.g., ocean grid, vegetation grid, atmosphere grid, etc.). There is no need to call this function in the case of a Cartesian lat/lon grid. In this case, simply define the latitude and longitude axes and pass their id’s (“handles”) to cmor_variable.
+
+
+*Arguments*:
+
+* *coord_var_id* = the “handle”: a positive integer returned by this function, which uniquely identifies the variable and can be used in subsequent calls to CMOR.
+
+* *grid_id* = the value returned by cmor_grid when the grid was created.
+
+* *table_entry* = name of the variable (as it appears in the MIP table) that this function defines.
+
+* *units* = units of the data that will be passed to CMOR by function cmor_write. These units may differ from the units of the data output by CMOR. Whenever possible, this string should be interpretable by udunits (see http://my.unitdata.ucar.edu/content/software/udunits/). In the case of dimensionless quantities the units should be specified consistent with the CF conventions, so for example: percent, units='percent'; for a fraction, units='1'; for parts per million, units='1e-6', etc.).
+
+* *type* = type of the missing_value, which must be the same as the type of the array that will be passed to cmor_write. The options are: ‘d’ (double), ‘f’ (float), ‘l’ (long) or ‘i’ (int).
+
+* *[missing_value]* = scalar that is used to indicate missing data for this variable. It must be the same type as the data that will be passed to cmor_write. This missing_value will in general be replaced by a standard missing_value specified in the MIP table. If there are no missing data, and the user chooses not to declare the missing value, then this argument may be omitted.
+
+* *[coordinate_type]* = place holder for future implementation, unused, pass NULL
+
+
+
+Returns:
+
+<span style="color:green">Fortran: a positive integer if an error is encountered; otherwise returns a negative integer (the “handle”) uniquely identifying the grid.</span>
+
+<span style="color:blue">C: 0 upon success.</span>
+
+<span style="color:coral">Python: upon success, a positive integer (the “handle”) uniquely identifying the axis, or if an error is encountered an exception is raised.</span>
+
+---
+
+
+
+### cmor_zfactor()
+
+<span style="color:green">Fortran: zfactor_id = cmor_zfactor(zaxis_id, zfactor_name, [axis_ids], [units], zfactor_values, zfactor_bounds)</span>
+
+<span style="color:blue">C: error_flag = cmor_zfactor (int *zfactor_id, int zaxis_id, char *zfactor_name, char *units, int ndims, int axis_ids[], char type, void *zfactor_values, void *zfactor_bounds)</span>
+
+<span style="color:coral">Python: zfactor_id = zfactor(zaxis_id, zfactor_name, units, axis_ids, type, zfactor_values=None, zfactor_bounds=None)</span>
+
+
+*Description:* Define a factor needed to convert a non-dimensional vertical coordinate (model level) to a physical location. For pressure, height, or depth, this function is unnecessary, but for dimensionless coordinates it is needed. In the case of atmospheric sigma coordinates, for example, a scalar parameter must be defined indicating the top of the model, and the variable containing the surface pressure must be identified. The parameters that must be defined for different vertical dimensionless coordinates are listed in Appendix D of the CF convention document (http://www.cgd.ucar.edu/cms/eaton/cf-metadata). Often bounds for the zfactors will be needed (e.g., for hybrid sigma coordinates, "A's" and "B's" must be defined both for the layers and, often more importantly, for the layer interfaces). This function must be invoked for each z-factor required.
+
+
+*Arguments*:
+
+* *zfactor_id = the “handle”: a positive integer returned by this function which uniquely identifies the grid defined in this call to CMOR and can subsequently be used in calls to CMOR.
+
+* *zaxis_id = an integer ("handle") returned by cmor_axis (which must have been previously called) indicating which axis requires this factor.
+
+* *zfactor_name = name of the z-factor that will be defined by this function. This should correspond to an entry in the MIP table.
+
+* *[axis_ids] = an integer array containing the list of axis_id's (individually defined by calls to cmor_axis), which the z-factor defined here is a function of (e.g. for surface pressure, the array of i.d.'s would usually include the longitude, latitude, and time axes.) The order of the axes must be consistent with the array passed as param_values. If the z-factor parameter is a function of a single dimension (e.g., model level), the single axis_id should be passed as an array of rank one and length 1, not as a scalar. If the parameter is a scalar, then this parameter may be omitted. If this parameter is carried on a non-cartesian latitude-longitude grid, then the grid_id should be passed instead of axis_ids, for latitude/longitude. Again if axis_ids collapses to a scalar, it should be passed as an array of rank one and length 1, not as a scalar.
+
+* *[units] = units associated with the z-factor passed in zfactor_values and zfactor_bounds. (These are the units of the user's z-factors, which may differ from the units of the z-factors written to the netCDF file by CMOR.) . These units must be recognized by udunits or must be identical to the units specified in the MIP table. In the case of a dimensionless z-factors, either omit this argument, or set units=’’, or set units='1'.
+
+* *type = type of the zfactor_values and zfactor_bounds (if present) passed to this function. This can be ‘d’ (double), ‘f’ (float), ‘l’ (long), ‘i’ (int), or ‘c’ (char).
+
+* *[zfactor_values] = z-factor values associated with dimensionless vertical coordinate identified by zaxis_id. If this z-factor is a function of time (e.g., surface pressure for sigma coordinates), the user can omit this argument and instead store the z-factor values by calling cmor_write. In that case the cmor_write argument, "var_id", should be set to zfactor_id (returned by this function) and the argument, "store_with", should be set to the variable id of the output field that requires zfactor as part of its metadata. When many fields are a function of the (dimensionless) model level, cmor_write will have to be called several times, with the same zfactor_id, but with different variable ids. If no values are passed, omit this argument.
+
+* *[zfactor_bounds] = z-factor values associated with the cell bounds of the vertical dimensionless coordinate. These values should be of the same type as the zfactor_values (e.g., if zfactor_values is double precision, then zfactor_bounds must also be double precision). If no bounds values are passed, omit this argument or set zfactor = 'none'. This is a ONE dimensional array of length nlevs+1.
+
+
+Returns:
+
+* <span style="color:green">Fortran: a negative integer if an error is encountered; otherwise returns a positive integer (the “handle”) uniquely identifying the z-factor.</span>
+
+* <span style="color:blue">C: 0 upon success.</span>
+
+* <span style="color:coral">Python: upon success, a positive integer (the “handle”) uniquely identifying the z-factor, or if an error is encountered an exception is raised.</span>
+
+---
+
+
+### cmor_variable()
+
+
+<span style="color:green">Fortran: var_id = cmor_variable([table], table_entry, units, axis_ids, [missing_value], [tolerance], [positive], [original_name], [history], [comment])</span>
+
+<span style="color:blue">C: error_flag = int cmor_variable(int *var_id, char *table_entry, char *units, int ndims, int axis_ids[], char type, void *missing, double *tolerance, char *positive, char*original_name, char *history, char *comment)</span>
+
+<span style="color:coral">Python: var_id = variable(table_entry, units, axis_ids, type='f', missing_value=None, tolerance = 1.e-4, positive=None, original_name=None, history=None, comment=None)</span>
+
+
+*Description:* Define a variable to be written by CMOR and indicate which axes are associated with it. This function prepares CMOR to write the file that will contain the data for this variable. This function returns a "handle" (var_id), uniquely identifying the variable, which will subsequently be passed as an argument to the cmor_write function. The variable specified by the table_entry argument must be found in the currently “set” CMOR table, as specified by the cmor_load_table and cmor_set_table functions, or as an option, it can be provided in the Fortran version (for backward compatibility) by the now deprecated “table” keyword argument. The cmor_variable function will typically be repeatedly invoked to define other variables. Note that backward compatibility was kept with the Fortran-only optional “table” keyword. But it is now recommended to use cmor_load_table and cmor_set_table instead (and necessary for C/Python).
+
+
+*Arguments*:
+
+* *var_id* = the “handle”: a positive integer returned by this function, which uniquely identifies the variable and can be used in subsequent calls to CMOR.
+
+* *[table]* = character string containing the filename of the MIP-specific table where table_entry (described next) can be found (e.g., “CMIP5_table_amon”, 'IPCC_table_A1', 'AMIP_table_1a', 'AMIP_table_2', 'CMIP_table_2', etc.) In CMOR2 this is an optional argument and is deprecated because the table can be specified through the cmor_load_table and cmor_set_table functions.
+
+* *table_entry* = name of the variable (as it appears in the MIP table) that this function defines.
+
+* *units* = units of the data that will be passed to CMOR by function cmor_write. These units may differ from the units of the data output by CMOR. Whenever possible, this string should be interpretable by udunits (see http://my.unitdata.ucar.edu/content/software/udunits/). In the case of dimensionless quantities the units should be specified consistent with the CF conventions, so for example: percent, units='percent'; for a fraction, units='1'; for parts per million, units='1e-6', etc.).
+
+* *ndims* = number of axes the variable contains (i.e., the rank of the array), which in fact is the number of elements in the axis_ids array that will be processed by CMOR.
+
+* *axis_ids* = 1-d array containing integers returned by cmor_axis, which specifies, via their “handles” (i.e., axis_ids), the axes associated with the variable that this function defines. These handles should be ordered consistently with the data that will be passed to CMOR through function cmor_write (see documentation below). If the size of the 1-d array is larger than the number of dimensions, the 'unused' dimension handles must be set to 0. Note that if the handle of a single axis is passed, it must not be passed as a scalar but as a rank 1 array of length 1. Scalar ("singleton") dimensions defined in the MIP table may be omitted from axis_ids unless they have been explicitly redefined by the user through calls to cmor_axis. A "singleton" dimension that has been explicitly defined by the user should appear last in the list of axis_ids if the array of data passed to cmor_write for this variable actually omits this dimension; otherwise it should appear consistent with the position of the axis in the array of data passed to cmor_write. In the case of a non-Cartesian grid, replace the values of the grid specific axes (representing the lat/lon axes) with the single grid_id returned by cmor_grid.
+
+* *type* = type of the missing_value, which must be the same as the type of the array that will be passed to cmor_write. The options are: ‘d’ (double), ‘f’ (float), ‘l’ (long) or ‘i’ (int).
+
+* *[missing_value]* = scalar that is used to indicate missing data for this variable. It must be the same type as the data that will be passed to cmor_write. This missing_value will in general be replaced by a standard missing_value specified in the MIP table. If there are no missing data, and the user chooses not to declare the missing value, then this argument may be omitted or assigned the value 'none' (i.e., missing_value='none').
+
+* *[tolerance]* = scalar (type real) indicating fractional tolerance allowed in missing values found in the data. A value will be considered missing if it lies within ±tolerance*missing_value of missing_value. The default tolerance for real and double precision missing values is 1.0e-4 and for integers 0. This argument is ignored if the missing_value argument is not present.
+
+* *[positive]* = 'up' or 'down' depending on whether a user-passed vertical energy (heat) flux or surface momentum flux (stress) input to CMOR is positive when it is directed upward or downward, respectively. This information will be used by CMOR to determine whether a sign change is necessary to make the data consistent with the MIP requirements. This argument is required for vertical energy and salt fluxes, for "flux correction" fields, and for surface stress; it is ignored for all other variables.
+
+* *[original_name]* = the name of the variable as it is commonly known at the user's home institute. If the variable passed to CMOR was computed in some simple way from two or more original fields (e.g., subtracting the upwelling and downwelling fluxes to get a net flux), then it is recommended that this be indicated in the "original_name" (e.g., "irup – irdown", where "irup" and "irdown" are the names of the original fields that were subtracted). If more complicated processing was required, this information would more naturally be included in a "history" attribute for this variable, described next.
+
+* *[history]* = how the variable was processed before outputting through CMOR (e.g., give name(s) of the file(s) from which the data were read and indicate what calculations were performed, such as interpolating to standard pressure levels or adding 2 fluxes together). This information should allow someone at the user's institute to reproduce the procedure that created the CMOR output. Note that this history attribute is variable-specific, whereas the history attribute defined by cmor_dataset provides information concerning the model simulation itself or refers to processing procedures common to all variables (for example, mapping model output from an irregular grid to a Cartesian coordinate grid). Note that when appropriate, CMOR will also indicate in the "history" attribute any operations it performs on the data (e.g., scaling the data, changing the sign, changing its type, reordering the dimensions, reversing a coordinate's direction or offsetting longitude). Any user-defined history will precede the information generated by CMOR.
+
+* *[comment]* = additional notes concerning this variable can be included here.
+
+
+Returns:
+
+* <span style="color:green">Fortran: a negative integer if an error is encountered; otherwise returns a positive integer (the “handle”) uniquely identifying the variable.</span>
+
+* <span style="color:blue">C: 0 upon success.</span>
+
+* <span style="color:coral">Python: upon success, a positive integer (the “handle”) uniquely identifying the variable, or if an error is encountered an exception is raised.</span>
+
+---
+
+### cmor_set_variable_attribute()
+
+
+<span style="color:green">Fortran: error_flag = cmor_set_variable_attribute(integer var_id, character(*) name, character(*) value)</span>
+
+<span style="color:blue">C: error_flag = cmor_set_variable_attribute(int variable_id, char *attribute_name, char type, void *value)</span>
+
+<span style="color:coral">Python: set_variable_attribute(var_id,name,value)</span>
+
+
+*Description:* Defines an attribute to be associated with the variable specified by the variable_id. This function is unlikely to be called in preparing CMIP5 output, except to delete the “ext_cell_measures” attribute (setting it to a empty string). For this reason you can only set character type attributes at the moment via Python and Fortran.
+
+
+*Arguments*:
+
+* *variable_id* = the “handle” returned by cmor_variable (when the variable was defined), which will become better described by the attribute defined in this function.
+
+* *attribute_name* = name of the attribute
+
+* *type* = type of the attribute value passed, which can be ‘d’ (double), ‘f’ (float), ‘l’ (long), ‘i’ (int), or ‘c’ (char).
+
+* *value* = whatever value you wish to set the attribute to (type defined by type argument).
+
+
+Returns upon success:
+
+* <span style="color:green">Fortran: 0</span>
+
+* <span style="color:blue">C: 0</span>
+
+* <span style="color:coral">Python: 0</span>
+
+
+---
+
+### cmor_get_variable_attribute()
+
+
+<span style="color:green">Fortran: error_flag = cmor_get_variable_attribute(integer var_id, character(*) name, character *value)</span>
+
+<span style="color:blue">C: error_flag = cmor_get_variable_attribute(int variable_id, char *attribute_name, char type, void *value)</span>
+
+<span style="color:coral">Python: get_variable_attribute(var_id,name)</span>
+
+
+*Description:* retrieves an attribute value set for the variable specified by the variable_id. This function is unlikely to be called in preparing CMIP5 output. The Python and Fortran version will only work on attribute of character (string) type, otherwise chaotic results should be expected
+
+
+*Arguments*:
+
+* *variable_id* = the “handle” returned by cmor_variable (when the variable was defined) identifying which variable the attribute is associated with.
+
+* *attribute_name* = name of the attribute
+
+* *type* = type of the attribute value to be retrieved. This can be ‘d’ (double), ‘f’ (float), ‘l’ (long), ‘i’ (int), or ‘c’ (char)
+
+* *value* = the argument that will accept the retrieved attribute.
+
+
+Returns upon success:
+
+* <span style="color:green">Fortran: 0</span>
+
+* <span style="color:blue">C: 0</span>
+
+* <span style="color:coral">Python: The attribute value</span>
+
+---
+
+### cmor_has_variable_attribute()
+
+
+<span style="color:green">Fortran: error_flag = cmor_has_variable_attribute(integer var_id, character(*) name)</span>
+
+<span style="color:blue">C: error_flag = cmor_has_variable_attribute(int variable_id, char *attribute_name)</span>
+
+<span style="color:coral">Python: has_variable_attribute(var_id,name)</span>
+
+
+*Description:* Determines whether an attribute exists and is associated with the variable specified by variable_id, which is a handle returned to the user by a previous call to cmor_variable. This function is unlikely to be called in preparing CMIP5 output.
+
+
+*Arguments*:
+
+* *variable_id* = the “handle” specifying which variable is of interest. A variable_id is returned by cmor_variable each time a variable is defined.
+
+* *attribute_name* = name of the attribute of interest.
+
+
+Returns upon success (i.e., if the attribute is found):
+
+* <span style="color:green">Fortran: 0</span>
+
+* <span style="color:blue">C: 0</span>
+
+* <span style="color:coral">Python: True</span>
+
+---
+
+
+### cmor_create_output_path()
+
+
+<span style="color:green">Fortran: call cmor_create_output_path(var_id, path)</span>
+
+<span style="color:blue">C: isfixed = cmor_create_output_path(int var_id, char *path)</span>
+
+<span style="color:coral">Python: path = create_output_path(var_id)</span>
+
+
+*Description:* construct the output path, consistent with CMIP5 specifications, where the file will be stored.
+
+
+*Arguments*:
+
+* *var_id* = variable identification (as returned from cmor_variable) you wish to get the output path for.
+
+* *path* = string (or pointer to a string), which is returned by the function and contains the output path.
+
+
+Returns:
+
+* <span style="color:green">Fortran: nothing it is a subroutine</span>
+
+* <span style="color:blue">C: 0 upon success or 1 if the filed is a fixed field</span>
+
+* <span style="color:coral">Python: the full path to the output file</span>
+
+---
+
+### cmor_write()
+
+
+<span style="color:green">Fortran: error_flag = cmor_write(var_id, data, [file_suffix], [ntimes_passed], [time_vals], [time_bnds], [store_with])</span>
+
+<span style="color:blue">C: error_flag = cmor_write(int var_id, void *data, char type, char *file_suffix, int ntimes_passed, double *time_vals, double *time_bounds, int *store_with)</span>
+
+<span style="color:coral">Python: write(var_id, data, ntimes_passed=None, file_suffix="", time_vals=None, time_bnds=None, store_with=None)</span>
+
+
+*Description:* For the variable identified by var_id, write an array of data that includes one or more time samples. This function will typically be repeatedly invoked to write other variables or append additional time samples of data. Note that time-slices of data must be written chronologically.
+
+
+*Arguments*:
+
+* *var_id* = integer returned by cmor_variable identifying the variable that will be written by this function.
+
+* *data* = array of data written by this function (of rank<8). The rank of this array should either be: (a) consistent with the number of axes that were defined for it, or (b) it should be 1-dimensional, in which case the data must be stored contiguously in memory. In case (a), an exception is that for a variable that is a function of time and when only one "time-slice" is passed, then the array can optionally omit this dimension. Thus, for a variable that is a function of longitude, latitude, and time, for example, if only a single time-slice is passed to cmor_write, the rank of array "data" may be declared as either 2 or 3; when declared rank 3, the time-dimension will be size 1. It is recommended (but not required) that the shape of data (i.e., the size of each dimension) be consistent with those expected for this variable (based on the axis definitions), but they are allowed to be larger (the extra values beyond the defined dimension domain will be ignored). In any case the dimension sizes (lengths) must obviously not be smaller than those defined by the calls to cmor_axis.
+
+* *type* = type of variable array (“data”), which can be ‘d’ (double), ‘f’ (float), ‘l’ (long) or ‘i’ (int).
+
+* *[file_suffix]* = string that will be concatenated with a string automatically generated by CMOR to form a unique filename where the output is written. This suffix is only required when a time-sequence of output fields will not all be written into a single file (i.e., two or more files will contain the output for the variable). The file prefix generated by CMOR is of the form variable_table, where variable is replaced by table_entry (i.e., the name of the variable), and table is replaced by the table number (e.g., tas_A1 refers to surface air temperature as specified in table A1). Permitted characters will be: a-z, A-Z, 0-9, and “-”. There are no restrictions on the suffix except that it must yield unique filenames and that it cannot contain any “_”. If the user supplies a suffix, the leading '_' should be omitted (e.g., pass '1979-1988', not '_1979-1988'). Note that the suffix passed through cmor_write remains in effect for the particular variable until (optionally) redefined by a subsequent call. In the case of CMOR “Append mode” (in case the file already existed before a call to cmor_setup), then file_suffix is to be used to point to the original file, this value should reflect the FULL path where the file can be found, not just the file name. CMOR2 will be smart enough to figure out if a suffix was used when creating that file. Note that this file will be first moved to a temporary file and eventually renamed to reflect the additional times written to it.
+
+* *[ntimes_passed]* = integer number of time slices passed on this call. If omitted, the number will be assumed to be the size of the time dimension of the data (if there is a time dimension).
+
+* *[time_vals]* = 1-d array (must be double precision) time coordinate values associated with the data array. This argument should appear only if the time coordinate values were not passed in defining the time axis (i.e., in calling cmor_axis). The units should be consistent with those passed as an argument to cmor_axis in defining the time axis. If cell bounds are also passed (see next argument, '[time_bnds]'), then CMOR will first check that each coordinate value is not outside its associated cell bounds; subsequently, however, the user-defined coordinate value will be replaced by the mid-point of the interval defined by its bounds, and it is this value that will be written to the netCDF file.
+
+
+* *[time_bnds]* = 2-d array (must be double precision) containing time bounds, which should be in the same units as time_vals. If the time_vals argument is omitted, this argument should also be omitted. The array should be dimensioned (2, n) in Fortran, and (n,2) in C/Python, where n is the size of time_vals (see CF standard document, http://www.cgd.ucar.edu/cms/eaton/cf-metadata, for further information).
+
+* *[store_with]* = integer returned by cmor_variable identifying the variable that the zfactor should be stored with. This argument must be defined when and only when writing a z-factor. (See description of the zfactor function above.)
+
+
+Returns upon success:
+
+* <span style="color:green">Fortran: 0</span>
+
+* <span style="color:blue">C: 0</span>
+
+* <span style="color:coral">Python: None</span>
+
+
+---
+
+### cmor_close()
+
+
+<span style="color:green">Fortran: error_flag = cmor_close(var_id, file_name, preserve)</span>
+
+<span style="color:blue">C: error_flag = cmor_close(void) or</span>
+
+<span style="color:blue">C: error_flag = cmor_close_variable(int var_id, char *file_name, int *preserve)</span>
+
+<span style="color:coral">Python: error_flag (or if name=True, returns the name of the file) = close(var_id=None, file_name=False, preserve=False)</span>
+
+
+*Description:* Close a single file specified by optional argument var_id, or if this argument is omitted, close all files created by CMOR (including log files). To be safe, before exiting any program that invokes CMOR, it is best to call this function with the argument omitted. In C to close a single variable, use: cmor_close_variable(var_id). When using this function to close a single file, an additional optional argument (of type “string”) can be included, into which will be returned the file name created by CMOR. [In python, the string is returned by the function.] Another additional optional argument can be passed specifying if the variable should be preserved for future use (e.g., if you want to write additional data but to a new file). Note that when preserve is true, the original var_id is preserved.
+
+
+*Arguments*:
+
+* *[var_id]* = the “handle” identifying an individual variable and the associated output file that will be closed by this function.
+
+* *[file_name]* = a string where the output file name will be stored. The file_name is returned only if its var_id has been included in the close_cmor argument list. This option provides a convenient method for the user to record the filename, which might be needed on a subsequent call to CMOR, for example, in order to append additional time samples to the file.
+
+* *[preserve]* = Do you want to preserve the var definition? (0/1) If true, the original var_id is preserved.
+
+
+Returns:
+
+* <span style="color:green">Fortran: 0 upon success</span>
+
+* <span style="color:blue">C: 0 upon success</span>
+
+* <span style="color:coral">Python: None if file_name=False, or the name of the file if file_name=True and a var_id is passed as an argument.</span>
 
 ---
 
