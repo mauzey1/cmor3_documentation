@@ -65,6 +65,10 @@ entries:
       url: /mydoc_cmor3_c/
       output: web, pdf
 
+    - title: Control Vocabulary (CMIP6)
+      url: /mydoc_cmor3_CV/
+      output: web, pdf
+
 
   - title: Appendix
     output: web, pdf
