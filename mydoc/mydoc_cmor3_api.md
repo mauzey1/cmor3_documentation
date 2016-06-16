@@ -52,6 +52,18 @@ Fortran: error_flag = cmor_setup(inpath='./', netcdf_file_action=CMOR_PRESERVE, 
 
 <span style="color:coral"> Python: dataset_json(name) </span>
 
+* *Description*: This function provides information to CMOR that is common to all output files that will be written.  The "dataset" defined by this function refers to some or all of the output from a single model simulation (i.e., output from a single realization of a single experiment from a single model).  Only one dataset can be defined at any time, but the dataset can be closed (by calling cmor_close()), and then another dataset can be defined by calling cmor_dataset. Note that after a new dataset is defined, all axes and variables must be defined; axes and variables defined earlier are not associated with the new dataset. 
+
+* *Arguments*:
+  * *name*:  JSON file which contains all information needed by CMOR in the form of key:value.   Here is an example: [cmorInput.json](https://raw.githubusercontent.com/PCMDI/cmor/master/Test/test2.json)
+
+Returns upon success:
+
+* <span style="color:green">Fortran: 0 </span>
+* <span style="color:blue"> C: 0 </span>
+* <span style="color:coral">Python: 0 </span>
+
+
 ---
 
 ### cmor_get_cur_dataset_attribute()

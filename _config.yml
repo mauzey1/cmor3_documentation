@@ -1,12 +1,12 @@
 permalink: /:year/:month/:day/:title/
 # this sets the style for permalinks. The date formatting (/:year/:month/:day/) will only apply to blog posts, while the pages will just show the title.
-url: http://pcmdi.llnl.gov/cmor3/
+url: http://cmor.llnl.gov/
 # where you plan to publish your site
-baseurl: "/cmor3_documentation"
+baseurl: ""
 # any subdirectory that appears after the domain where you're publishing your site
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
-topnav_title: Climate Model Output Rewritter Version 3
+topnav_title: Climate Model Output Rewriter Version 3
 # this appears on the top navigation bar next to the home button
 site_title: CMOR 3
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
@@ -31,8 +31,8 @@ feedback_email:  pcmdi-cmip@lists.llnl.gov
 # used as a contact email for the Feedback link in the top navigation bar
 
 #feedback_disable: true
-#feedback_text: "Need help?"
-#feedback_link: "http://helpy.io/"
+feedback_text: "Report issues!"
+feedback_link: "https://github.com/PCMDI/cmor3_documentation/issues/new"
 # change feedback link behaviour if you use a support ticketing system or something else
 
 highlighter: rouge

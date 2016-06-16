@@ -6,11 +6,11 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_CV/
 ---
 
-* [CMIP6_CV.json](https://github.com/PCMDI/cmor/blob/cmor3/TestTables/CMIP6_CV.json)
 
-```json
 
 ### CMIP6 required global attributes
+
+* [CMIP6_CV.json](https://github.com/PCMDI/cmor/blob/master/TestTables/CMIP6_CV.json)
 
 ```json
     "required_global_attributes": 

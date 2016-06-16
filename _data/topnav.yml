@@ -13,7 +13,7 @@ topnav_dropdowns:
     - title: Products
       folderitems:
         - title: CMOR3 Documentation 
-          url: /mydoc_introduction/
+          url: /
 
 
 

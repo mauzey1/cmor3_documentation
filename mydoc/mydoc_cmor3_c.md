@@ -8,7 +8,7 @@ permalink: /mydoc_cmor3_c/
 
 ### CMOR user input
 
-* [ipcc_test_code.json](https://github.com/PCMDI/cmor/blob/cmor3/Test/ipcc_test_code.json)
+* [ipcc_test_code.json](https://github.com/PCMDI/cmor/blob/master/Test/ipcc_test_code.json)
 
 ```json
 {
@@ -106,7 +106,7 @@ permalink: /mydoc_cmor3_c/
 
 ### C source code
 
-* [ipcc_test_code.c](https://github.com/PCMDI/cmor/blob/cmor3/Test/ipcc_test_code.c)
+* [ipcc_test_code.c](https://github.com/PCMDI/cmor/blob/master/Test/ipcc_test_code.c)
 
 ```c
 #include <time.h>

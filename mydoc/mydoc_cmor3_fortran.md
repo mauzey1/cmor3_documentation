@@ -8,7 +8,7 @@ permalink: /mydoc_cmor3_fortran/
 
 ### CMOR user input
 
-* [test2.json](https://github.com/PCMDI/cmor/blob/cmor3/Test/test2.json)
+* [test2.json](https://github.com/PCMDI/cmor/blob/master/Test/test2.json)
 
 ```json
 {
@@ -78,7 +78,7 @@ permalink: /mydoc_cmor3_fortran/
 
 ### Fortran source dode
 
-* [ipcc_test_code.f90](https://github.com/PCMDI/cmor/blob/cmor3/Test/ipcc_test_code.f90)
+* [ipcc_test_code.f90](https://github.com/PCMDI/cmor/blob/master/Test/ipcc_test_code.f90)
 
 ```fortran
 #include <time.h>

@@ -30,8 +30,29 @@ permalink: /mydoc_cmor3_conda/
 
   * Run the following command
    
-    ```
+    ```bash
+
+    # install cmor, it will also install cdms2.
+    # ------------------------------------------------
     conda install cmor -c pcmdi
+
+    # Clone the CMIP6 table to your working directory.
+    # ------------------------------------------------
+    mkdir CMIP6_work
+    cd  CMIP6_work
+
+    # Disable SSL verifycation (firewall only).
+    # -----------------------------------------
+    export GIT_SSL_NO_VERIFY=true
+    git clone https://github.com/PCMDI/cmip6-cmor-tables.git
+
+    # Create a softlink of your tables in your working directory.
+    # -----------------------------------------------------------
+    ln -s cmip6-cmor-tables/Tables .
+
+    # Set the UDUNITS2_XML_PATH to your anaconda installation.
+    # -----------------------------------------------------------
+    export UDUNITS2_XML_PATH=${HOME}/anaconda/share/udunits/udunits2.xml
     ```
 
 ## Conda environment
@@ -46,5 +67,7 @@ permalink: /mydoc_cmor3_conda/
     ```
 
   * [To learn more about conda environments](http://conda.pydata.org/docs/using/envs.html)
+
+
 
 

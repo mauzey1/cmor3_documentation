@@ -16,33 +16,27 @@ CMOR output has the following characteristics:
 * Each file contains a single primary output variable (along with coordinate/grid variables, attributes and other metadata) from a single model and a single simulation (i.e., from a single ensemble member of a single climate experiment).  This method of structuring model output best serves the needs of most researchers who are typically interested in only a few of the many variables in the MIP databases.  Data requests can be satisfied by simply sending the appropriate file(s) without first extracting the individual field(s) of interest.
 
 * There is flexibility in specifying how many time slices (samples) are stored in a single file. A single file can contain all the time-samples for a given variable and climate experiment, or the samples can be distributed in a sequence of files.
-* Much of the metadata written to the output files is defined in MIP-specific tables of information, which in this document are referred to simply as "MIP tables".  These tables are ASCII files that can be read by CMOR and are typically made available from MIP web sites.  Because these tables contain much of the metadata that is useful in the MIP context, they are the key to reducing the programming burden imposed on the individual users contributing data to a MIP.  Additional tables can be created as new MIPs are born.
+
+* Much of the metadata written to the output files is defined in MIP-specific tables of information, which in this document are referred to simply as "MIP tables".  These tables are JSON files that can be read by CMOR and are typically made available from MIP web sites.  Because these tables contain much of the metadata that is useful in the MIP context, they are the key to reducing the programming burden imposed on the individual users contributing data to a MIP.  Additional tables can be created as new MIPs are born.
+
 * For metadata, different MIPs may have different requirements, but these are accommodated by CMOR, within the constraints of the CF convention and as specified in the MIP tables.
-* CMOR can rely on NetCDF4 [See unidata web page](http://www.unidata.ucar.edu/software/netcdf) to write the output files and can take advantage of its compression and chunking capabilities. In that case, compression is controlled with the MIP tables using the shuffle, deflate and deflate_level attributes, default values are respectively 1, 1 and 6. It is worth noting that even when using NetCDF4, CMOR3 still produces NETCDF_CLASSIC formatted output. This allows the file generated to be readable by any application that can read NetCDF3 provided they are re-linked against NetCDF4.  When using the NetCDF4 library it is also still possible to write files that can be read through the NetCDF3 library by adding "_3" to the appropriate cmor_setup argument (see below). Either way, CMOR3 output NetCDF3 files by default.  For CMIP6, the NetCDF3/NC_CLASSIC_Model mode is used (and chunking/compression/shuffling is not invoked).
-* CMOR also must be linked against the udunits2 library (see http://www.unidata.ucar.edu/software/udunits/), which enables CMOR to check that the units attribute is correct[\[6\]](#6). Finally CMOR2 must also be linked against the uuid library (see http://www.ossp.org/pkg/lib/uuid) in order to produce a unique tracking number for each file.   
+
+* CMOR can rely on NetCDF4 [See unidata web page](http://www.unidata.ucar.edu/software/netcdf) to write the output files and can take advantage of its compression and chunking capabilities. In that case, compression is controlled with the MIP tables using the shuffle, deflate and deflate_level attributes, default values are respectively 0, 0 and 0(disable). It is worth noting that even when using NetCDF4, CMOR3 still produces NETCDF4 CLASSIC formatted output. This allows the file generated to be readable by any application that can read NetCDF3 provided they are re-linked against NetCDF4.  When using the NetCDF4 library it is also still possible to write files that can be read through the NetCDF3 library by adding "_3" to the appropriate cmor_setup argument (see below). Note: CMOR3 **NOW** output NetCDF3 files by default.  For CMIP6, the NetCDF4/NC_CLASSIC_Model mode is used (and chunking is not invoked, but shuffle and delfation can be invoke on-demand).
+
+* CMOR also must be linked against the udunits2 library [see http://www.unidata.ucar.edu/software/udunits/](http://www.unidata.ucar.edu/software/udunits/), which enables CMOR to check that the units attribute is correct[\[6\]](#6). Finally CMOR3 must also be linked against the uuid library [see http://www.ossp.org/pkg/lib/uuid](http://www.ossp.org/pkg/lib/uuid) in order to produce a unique tracking number for each file.   
  
 Although the CMOR output adheres to a fairly rigid structure, there is considerable flexibility allowed in the design of codes that write data through the CMOR functions.  Depending on how the source data are stored, one might want to structure a code to read and rewrite the data through CMOR in several different ways.  Consider, for example, a case where data are originally stored in "history" files that contain many different fields, but a single time sample.   If one were to process several different fields through CMOR and one wanted to include many time samples per file, then it would usually be more efficient to read all the fields from the single input file at the same time, and then distribute them to the appropriate CMOR output files, rather than to process all the time-samples for a single field and then move on to the next field.  If, however, the original data were stored already by field (i.e., one variable per file), then it would make more sense to simply loop through the fields, one at a time.  The user is free to structure the conversion program in either of these ways (among others).
  
 Converting data with CMOR typically involves the following steps (with the CMOR function names given in parentheses):
-<ul>
-<li> 
-Initialize CMOR and specify where output will be written and how error messages will be handled (cmor_setup).
-</li><li>
-Provide information directing where output should be placed and identifying the data source, project name, experiment, etc. (cmor_dataset).
-</li><li>
-Set any additional "dataset" (i.e. global) attributes (cmor_set_cur_dataset function).  Note that for CMIP6 all the required global attributes are normally set by calling other CMOR subroutines, but this subroutine makes it possible for the user to define additional global attributes.
-</li><li>
-Define the axes (i.e., the coordinate values) associated with each of the dimensions of the data to be written and obtain "handles", to be used in the next step, which uniquely identify the axes (cmor_axis). 
-</li><li>
-In the case of non-Cartesian longitude-latitude grids or for "station data", define the grid and its mapping parameters (cmor_grid and cmor_set_grid_mapping)
-</li><li>
-Define the variables to be written by CMOR, indicate which axes are associated with each variable, and obtain "handles", to be used in the next step, which uniquely identify each variable (cmor_variable).  For each variable defined, this function fills internal table entries containing file attributes passed by the user or obtained from a MIP table, along with coordinate variables and other related information. Thus, nearly all of the file's metadata is collected during this step.
-</li><li>
-Write an array of data that includes one or more time samples for a defined variable (cmor_write).  This step will typically be repeated to output additional variables or to append additional time samples of data.
-</li><li>
-Close one or all files created by CMOR (cmor_close)
-</li>
-</ul>
+
+* Initialize CMOR and specify where output will be written and how error messages will be handled (cmor_setup).
+* Provide information directing where output should be placed and identifying the data source, project name, experiment, etc. (cmor_dataset_json).  User need to provide a User Input CMOR file to define each attribute.
+* Set any additional "dataset" (i.e. global) attributes (cmor_set_cur_dataset function).  Note that all CMIP6 attributes can also be defined in the CMOR input user JSON file (cmor_dataset_json).
+* Define the axes (i.e., the coordinate values) associated with each of the dimensions of the data to be written and obtain "handles", to be used in the next step, which uniquely identify the axes (cmor_axis).  
+* In the case of non-Cartesian longitude-latitude grids or for "station data", define the grid and its mapping parameters (cmor_grid and cmor_set_grid_mapping)
+* Define the variables to be written by CMOR, indicate which axes are associated with each variable, and obtain "handles", to be used in the next step, which uniquely identify each variable (cmor_variable).  For each variable defined, this function fills internal table entries containing file attributes passed by the user or obtained from a MIP table, along with coordinate variables and other related information. Thus, nearly all of the file's metadata is collected during this step.
+* Write an array of data that includes one or more time samples for a defined variable (cmor_write).  This step will typically be repeated to output additional variables or to append additional time samples of data.
+* Close one or all files created by CMOR (cmor_close)
  
 There is an additional function (cmor_zfactor), which enables one to define metadata associated with dimensionless vertical coordinates.
  
@@ -60,7 +54,6 @@ The code does not, however, include a capability to interpolate data, either in 
  
 The output resulting from CMOR is "self-describing" and includes metadata summarized below, organized by attribute type (global, coordinate, or variable attributes) and by its source (specified by the user or in a MIP table, or generated by CMOR).
  
-*** Need to refer to CMIP6 controled vocabulary.
 
 *Global attributes typically provided by the MIP table or generated by CMOR:*
  
@@ -69,6 +62,8 @@ The output resulting from CMOR is "self-describing" and includes metadata summar
 * *history*, any user-provided history along with a "timestamp" generated by CMOR and a statement that the data conform to both the CF standards and those of a particular MIP.
 * *activity_id*, scientific project that inspired this simulation (e.g., CMIP6)
 * *table_id*, MIP table used to define variable.
+* *data_specs_version* Base on the latest CMIP6-Datarequest latest database version.
+* *mip_era*,  define what cycle of CMIP dictates the experiment and data specificiation.
 * *experiment*, a long name title for the experiment.
 * *realm(s)* to which the variable belongs (e.g., ocean, land, atmosphere, etc.).
 * *tracking_id*,  a unique identification string generated by uuid, which is useful at least within the ESG distributed data archive.
@@ -83,15 +78,14 @@ The output resulting from CMOR is "self-describing" and includes metadata summar
 * *institute_id*, a shorter identifying name of the modeling center (which would be appropriate for labeling plots in which results from many models might appear).
 * *source*, identifying the model version that generated the output.
 * *contact*, providing the name and email of someone responsible for the data
-* *model_id*, an acronym that identifies the model used to generate the output.
+* *source_id*, an acronym that identifies the model used to generate the output.
 * *experiment_id*, a short name for the experiment.
-* *forcing*, a integer distinguishing among "forcing" agents that could cause the climate to change in the experiment.
 * *history*, providing an "audit trail" for the data, which will be supplemented with CMOR-generated information described above.
 * *references*, typically containing documentation of the model and the model simulation.
 * *comment*, typically including initialization and spin-up information for the simulation.
-* *realization*, an integer distinguishing among simulations that differ only from different equally reasonable initial conditions.  This number should be greater than or equal to 1. CMOR will reset this to 0 automatically for "fixed" frequency (i.e. time-independent fields)
-* *initialization_method*, an integer distinguishing among simulations that differ only in the method of initialization.  This number should be greater than or equal to 1.
-* *physics_version*, an integer indicating which of several closely related physics versions of a model produced the simulation.
+* *realization_index*, an integer distinguishing among simulations that differ only from different equally reasonable initial conditions.  This number should be greater than or equal to 1. 
+* *initialization_index*, an integer distinguishing among simulations that differ only in the method of initialization.  This number should be greater than or equal to 1.
+* *physics_index*, an integer indicating which of several closely related physics versions of a model produced the simulation.
 * *parent_experiment_id*, a string indicating which experiment this branches from. For CMIP6 this should match the short name of the parent experiment id.
 * *parent_experiment_rip*, a string indicating <span style="color:red">which member of an ensemble of parent experiment runs this simulation branched from.</span>
 * *branch_time*, time in parent experiment when this simulation started (in the units of the parent experiment).
@@ -123,8 +117,8 @@ Note: additional global attributes can be added by the user via the cmor_set_cur
 * *comment*, providing clarifying information concerning the variable (e.g., whether precipitation includes both liquid and solid forms of precipitation).
 * *history*, indicating what CMOR has done to the user supplied data (e.g., transforming its units or rearranging its order to be consistent with the MIP requirements)
 * *coordinates*, (when appropriate) supplying either scalar (singleton) dimension information or the name of the labels containing names of geographical regions.
-* *associated_files*, files that contain metadata that applies to this variable. Presently this attribute points to the gridspec file and the files containing areacella, areacello, and volcello if they’re referred to by the "cell_measures" attribute.  It also includes a URL pointing to the top directory structure where the data will be accessible online.
 * *flag_values* and *flag_meanings*
+* *modeling_realm*, providing the realm associated to the variable (ocean, land, aerosol, SeaIce, LandIce, ...)
  
 *Variable attributes typically provided by the user in a call to a CMOR function:*
  
