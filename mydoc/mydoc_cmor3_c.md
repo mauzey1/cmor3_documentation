@@ -20,53 +20,37 @@ permalink: /mydoc_cmor3_c/
 
            "branch_method":          "standard",
            "branch_time_in_child":   "365.0",
-           "#output":                "Output Path where files are written",
            "outpath":                "CMIP6",
 
-           "#experiment_id":         "Correspond to id found in CV json file",
-           "#experiment_id":         "piClim-aer",
            "experiment_id":          "piControl-withism",
-           "#experiment_id":         "land-hist",
            "sub_experiment_id":      "ds1968",
            "sub_experiment":         "none",
 
            "source_type":            "AGCM AER CHEM DENIS",
            "source_type":            "AGCM AER DENIS",
            "source_type":            "AOGCM ISM AER",
-           "#source_type":            "LND",
-           "#parent_sub_experiment_id": "N/A",
+
            "parent_mip_era":         "N/A",
            "mip_era":                "CMIP6",
-           "#calendar":              "",
+
            "calendar":               "360_day",
            "branch_time":            "1.34",
 
-           "#realization_index":     "",
            "realization_index":      "11",
 
-           "#initialization_index":  "",
            "initialization_index":   "1",
 
-           "#physics_index":         "",
            "physics_index":          "1",
 
-           "#forcing_index":         "",
            "forcing_index":          "1",
 
-           "#contact ":              "Not required",
-           "#contact ":              "Python Coder (coder@a.b.c.com)",
+           "contact ":              "Python Coder (coder@a.b.c.com)",
 
-           "#history":               "not required, supplemented by CMOR",
            "history":                "Output from archivcl_A1.nce/giccm_03_std_2xCO2_2256.",
 
-           "#comment":               "Not required",
            "comment":                "Equilibrium reached after 30-year spin-up after which data were output starting with nominal date of January 2030",
 
-           "#references":            "Not required",
            "references":             "Model described by Koder and Tolkien (J. Geophys. Res., 2001, 576-591).  Also see http://www.GICC.su/giccm/doc/index.html  2XCO2 simulation described in Dorkey et al. '(Clim. Dyn., 2003, 323-357.)'",
-
-
-           "#driving_variant_label":     "no-driver",
 
 
            "grid":                   "gs1x1",
@@ -81,17 +65,13 @@ permalink: /mydoc_cmor3_c/
            "parent_variant_label":      "r1i1p1f3",
 
 
-           "#run_variant":           "Description of run variant (Recommended).",
            "run_variant":            "forcing: black carbon aerosol only",
 
-           "#source_id":              "Model Source",
            "source_id":               "CESM1-CAM5",
 
-           "#source":                "source title, first part is source_id",
            "source":                 "CESM1 (CAM5): model version ca. 2009",
 
 
-           "#output_path_template":   "Template for output path directory using tables keys or global attributes",
            "output_path_template":    "<activity_id><institution_id><source_id><experiment_id><variant_label><table><variable_id><grid_label><version>",
 
 
