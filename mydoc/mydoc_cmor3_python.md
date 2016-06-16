@@ -5,7 +5,7 @@ keywords: example, python
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_python/
 ---
-### CMOR User Input
+### CMOR user Input
 
 
 [test_doc.json](https://github.com/PCMDI/cmor/blob/master/Test/test_doc.json)
