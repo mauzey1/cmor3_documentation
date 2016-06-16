@@ -26,12 +26,9 @@ permalink: /mydoc_cmor3_c/
            "sub_experiment_id":      "ds1968",
            "sub_experiment":         "none",
 
-           "source_type":            "AGCM AER CHEM DENIS",
-           "source_type":            "AGCM AER DENIS",
            "source_type":            "AOGCM ISM AER",
 
            "parent_mip_era":         "N/A",
-           "mip_era":                "CMIP6",
 
            "calendar":               "360_day",
            "branch_time":            "1.34",
@@ -44,7 +41,7 @@ permalink: /mydoc_cmor3_c/
 
            "forcing_index":          "1",
 
-           "contact ":              "Python Coder (coder@a.b.c.com)",
+           "contact":                "Python Coder (coder@a.b.c.com)",
 
            "history":                "Output from archivcl_A1.nce/giccm_03_std_2xCO2_2256.",
 
@@ -62,7 +59,7 @@ permalink: /mydoc_cmor3_c/
            "parent_activity_id":     "CMIP",
            "parent_experiment_id":   "histALL",
            "parent_source_id":       "GFDL-CM2-1",
-           "parent_variant_label":      "r1i1p1f3",
+           "parent_variant_label":   "r1i1p1f3",
 
 
            "run_variant":            "forcing: black carbon aerosol only",
