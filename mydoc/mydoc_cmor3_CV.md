@@ -6,7 +6,8 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_CV/
 ---
 
-
+### To register, activities, sources or institutions
+  * Contact: [cmor@listserv.llnl.gov](mailto:cmor@listserv.llnl.gov)
 
 ### CMIP6 required global attributes
 

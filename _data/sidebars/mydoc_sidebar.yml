@@ -36,6 +36,9 @@ entries:
       url: /acknowledgements/
       output: web, pdf
 
+    - title: PDF
+      url: /pdf/
+      output: web
 
   - title: Installation
     output: web, pdf
