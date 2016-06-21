@@ -5,9 +5,8 @@ keywords: conda
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_conda/
 ---
-# Anaconda Installation
 
-## All Platforms System Requirements
+### All Platforms System Requirements
 
   * [Anaconda](https://www.continuum.io/)
   * Make sure anaconda is in your PATH (assuming ananconda is installed in ${HOME}/anaconda)
@@ -17,7 +16,7 @@ permalink: /mydoc_cmor3_conda/
     setenv PATH ${HOME}/anaconda/bin:${PATH} # for [t]csh
     ``` 
 
-## Bypassing firewalls
+### Bypassing firewalls
 
   * If your institution has a firewall
 
@@ -26,7 +25,7 @@ permalink: /mydoc_cmor3_conda/
     binstar config --set verify_ssl False # it's not a typo ssl and verify are reversed
     ```
 
-## Installing
+### Installing
 
   * Run the following command
    

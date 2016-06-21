@@ -5,7 +5,7 @@ baseurl: "http://127.0.0.1:4005"
 port: 4005
 output: pdf
 product: mydoc
-print_title: CMOR user documentation 
+print_title: CMOR 3.1
 print_subtitle: version 3.1
 output: pdf
 defaults:
