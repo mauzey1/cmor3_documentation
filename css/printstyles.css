@@ -69,6 +69,7 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
     letter-spacing: -.5px;
     margin-bottom:20px;
 }
+
 .printTitleArea hr {
     color: #999999 !important;
     height: 2px;
@@ -81,9 +82,6 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
 }
 
 
-.printTitleImage {
-    max-width: 250px;
-}
 
 #navig {
     /*page-break-before: always;*/
