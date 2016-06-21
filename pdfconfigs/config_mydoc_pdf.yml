@@ -1,11 +1,10 @@
 destination: _site/
-#url: "http://127.0.0.1:4005"
-url: ""
-baseurl: "http://127.0.0.1:4005"
+url: "http://127.0.0.1:4005/"
+baseurl: "/"
 port: 4005
 output: pdf
 product: mydoc
-print_title: CMOR user documentation 
+print_title: CMOR 
 print_subtitle: version 3.1
 output: pdf
 defaults:

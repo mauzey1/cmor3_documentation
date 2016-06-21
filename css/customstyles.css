@@ -2,6 +2,16 @@ body {
     font-size:15px;
 }
 
+.green {
+    color: green !important;
+}
+.coral {
+    color: coral !important;
+}
+.blue {
+    color: blue !important;
+}
+
 .bs-callout {
     padding: 20px;
     margin: 20px 0;

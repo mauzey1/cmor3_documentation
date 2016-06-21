@@ -98,12 +98,12 @@ entries:
       output: web, pdf
 
 
-  - title: Troubleshooting
+  - title: Contact us!
     output: web, pdf
     
     folderitems:
 
-    - title: Troubleshooting
-      url: /mydoc_troubleshooting/
+    - title: Contact
+      url: /mydoc_contacts/
       output: web, pdf
 
