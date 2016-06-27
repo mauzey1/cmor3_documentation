@@ -1,17 +1,8 @@
-{% if page.sidebar == "home_sidebar" %}
-{% assign sidebar = site.data.sidebars.home_sidebar.entries %}
-
-{% elsif page.sidebar == "functions_sidebar" %}
-{% assign sidebar = site.data.sidebars.functions_sidebar.entries %}
-
-{% elsif page.sidebar == "mydoc_sidebar" %}
+{% if page.sidebar == "mydoc_sidebar" %}
 {% assign sidebar = site.data.sidebars.mydoc_sidebar.entries %}
 
 {% elsif page.sidebar == "tags_sidebar" %}
 {% assign sidebar = site.data.sidebars.tags_sidebar.entries %}
-
-{% else %}
-{% assign sidebar = site.data.sidebars.home_sidebar.entries %}
 {% endif %}
 
 
@@ -24,10 +15,3 @@ sidebar configuration for print files
 {% assign sidebar_pdf = site.data.sidebars.mydoc_sidebar.entries %}
 {% endif %}
 
-{% if site.product == "product1" %}
-{% assign sidebar_pdf = site.data.sidebars.product1_sidebar.entries %}
-{% endif %}
-
-{% if site.product == "product2" %}
-{% assign sidebar_pdf = site.data.sidebars.product2_sidebar.entries %}
-{% endif %}
