@@ -36,6 +36,10 @@ entries:
       url: /acknowledgements/
       output: web, pdf
 
+    - title: CMIP6 Validator
+      url: /mydoc_cmip6_validator/
+      output: web
+
     - title: PDF
       url: /pdf/
       output: web
