@@ -33,7 +33,7 @@ permalink: /mydoc_cmor3_conda/
 
     # install cmor, it will also install cdms2.
     # ------------------------------------------------
-    conda install cmor -c pcmdi
+    conda install cmor -c pcmdi -c uvcdat
 
     # Clone the CMIP6 table to your working directory.
     # ------------------------------------------------
