@@ -148,7 +148,7 @@ Python: table_id = load_table(table)
 {:.coral} 
 
 *Description:*
-Loads a table and returns a “handle” (table_id) to use later when defining CMOR components. CMOR will look for the table first followig the path as specified by the “table” argument passed to this function.  If it doesn’t find a file there it will prepend the outpath defined in calling cmor_dataset. If it still doesn’t find it, it will use the “prefix” where the library CMOR is to be installed (from configure time) followed by share (e.g /usr/local/cmor/share). If it stills fails an error will be raised.
+Loads a table and returns a “handle” (table_id) to use later when defining CMOR components. CMOR will look for the table first following the path as specified by the “table” argument passed to this function.  If it doesn’t find a file there it will prepend the outpath defined in calling cmor_dataset. If it still doesn’t find it, it will use the “prefix” where the library CMOR is to be installed (from configure time) followed by share (e.g /usr/local/cmor/share). If it stills fails an error will be raised.
 
 
 ---
