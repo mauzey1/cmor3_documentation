@@ -40,7 +40,7 @@ permalink: /mydoc_cmor3_conda/
     mkdir CMIP6_work
     cd  CMIP6_work
 
-    # Disable SSL verifycation (firewall only).
+    # Disable SSL verification (firewall only).
     # -----------------------------------------
     export GIT_SSL_NO_VERIFY=true
     git clone https://github.com/PCMDI/cmip6-cmor-tables.git
