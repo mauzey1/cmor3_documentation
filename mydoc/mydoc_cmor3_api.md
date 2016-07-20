@@ -168,6 +168,95 @@ Python: table_id = set_table(table_id)
 
 ---
 
+### cmor_axis()
+
+Fortran: axis_id = cmor_axis([table], table_entry, units, [length], [coord_vals], [cell_bounds], [interval])
+{:.green}
+
+C: error_flag = cmor_axis(int *axis_id, char *table_entry, char *units, int length, void *coord_vals, char type, void *cell_bounds, int cell_bounds_ndim, char *interval)
+{:.blue}
+
+Python: axis_id = axis(table_entry, length=??, coord_vals=None, units=None, cell_bounds=None, interval=None)
+{:.coral}
+
+*Description:*  Define an axis and pass the coordinate values associated with one of the dimensions of the data to be written. This function returns a "handle" (axis_id) that uniquely identifies the axis to be written.  The axis_id will subsequently be passed by the user to other CMOR functions.  The cmor_axis function will typically be repeatedly invoked to define all axes.  The axis specified by the table_entry argument must be found in the currently “set” CMOR table, as specified by the cmor_load_table and cmor_set_table functions, or as an option, it can be provided in the Fortran version (for backward compatibility) by the now deprecated “table” keyword argument.  There normally is no need to call this function in the case of a singleton (scalar) dimension unless the MIP recommended (or required) coordinate value (or cell_bounds) are inconsistent with what the user can supply, or unless the user wants to define the "interval" attribute. 
+
+*Arguments:*
+
+* **[table]** = character string containing the filename of the MIP-specific table where the axis defined here appears. (e.g., ‘CMIP5_table_Amon’, 'IPCC_table_A1', 'AMIP_table_1a', 'AMIP_table_2', 'CMIP_table_2', etc.).   In CMOR2 this is an optional argument and is deprecated because the table can be specified through the cmor_load_table and cmor_set_table functions.
+
+* **axis_id** = the “handle”: a positive integer returned by CMOR, which uniquely identifies the axis stored in this call to cmor_axis and subsequently can be used in calls to cmor_write. 
+
+* **table_entry** = name of the axis (as it appears in the MIP table) that will be defined by this function.
+units = units associated with the coordinates passed in coord_vals and cell_bounds.  (These are the units of the user's coordinate values, which, if CMOR is built with udunits (as is required in version 2), may differ from the units of the coordinates written to the netCDF file by CMOR.  For non-standard calendars (e.g., models with no leap year), conversion of time values can be made only if CMOR is built with CDMS.) These units must be recognized by udunits or must be identical to the units specified in the MIP table.  In the case of a dimensionless vertical coordinate or in the case of a non-numerical axis (like geographical region), either set units='none', or, optionally, set units='1'.
+
+* **[length]** = integer specifying the number of elements that CMOR should extract from the coord_vals array (normally length will be the size of the array itself). For a simple “index axis” (i.e., an axis without coordinate values), this specifies the length of the dimension.  In the Fortran and Python versions of the function, this argument is not always required (except in the case of a simple index axis); if omitted  “length” will be the size of the coord_vals array, 
+
+* **[coord_vals]** = 1-d array (single precision float, double precision float, or, for labels, character strings) containing coordinate values, ordered consistently with the data array that will be passed by the user to CMOR through function cmor_write (see documentation below).  This argument is required except if: 1) the axis is a simple “index axis” (i.e., an axis without coordinate values), or 2) for a time coordinate, the user intends to pass the coordinate values when the cmor_write function is called.  Note that the coordinate values must be ordered monotonically, so, for example, in the case of longitudes that might have the values, 0., 10., 20, ... 170., 180., 190., 200.,  ... 340., 350., passing the (equivalent) values, 0., 10., 20, ... 170., 180., -170., -160., ... -20., -10. is forbidden.  In the case of time-coordinate values, if cell bounds are also passed, then CMOR will first check that each coordinate value is not outside its associated cell bounds; subsequently, however, the user-defined coordinate value will be replaced by the mid-point of the interval defined by its bounds, and it is this value that will be written to the netCDF file. In the case of character string coord_vals there are no cell_bounds, but for the C version of the function, the argument cell_bounds_ndim is used to specify the length of the strings in the coord_val array (i.e., the array will be dimensioned [length][cell_bounds_ndim]). 
+
+* **type** = type of the coord_vals/bnds passed, which can be ‘d’ (double), ‘f’ (float), ‘l’ (long) or ‘i’ (int).
+
+* **[cell_bounds]** = 1-d or 2-d array (of the same type as coord_vals) containing cell bounds, which should be in the same units as coord_vals (specified in the "units" argument above) and should be ordered in the same way as coord_vals.  In the case of a 1-d array, the size is one more than the size of coord_vals and the cells must be contiguous.  In the case of a 2-d array, it is dimensioned (2, n) where n is the size of coord_vals (see CF standard document, http://www.cgd.ucar.edu/cms/eaton/cf-metadata, for further information).  This argument may be omitted when cell bounds are not required.  It must be omitted if coord_vals is omitted.
+
+* **cell_bounds_ndim** = This argument only appears in the the C version of this function.   Except in the case of a character string axis, it specifies the rank of the cell_bounds array: if 1, the bounds array will contain n+1 elements, where n is length of coords and the cells must be contiguous, whereas if 2, the dimension will be (n,2) in C order.  Pass 0 if no cell_bounds values have been  passed. In the special case of a character string axis, this argument is used to specify the length of the strings in the coord_val array (i.e., the array will be dimensioned [length] [cell_bounds_ndim]). 
+
+* **[interval]** = Supplemental information that will be included in the cell_methods attribute, which is typically defined for the time axis in order to describe the sampling interval.  This string should be of the form: "value unit comment: anything" (where "comment:" and anything may always be omitted).  For monthly mean data sampled every 15 minutes, for example, interval = "15 minutes".
+  
+Returns: 
+
+* Fortran: a negative integer if an error is encountered; otherwise returns a positive integer (the “handle”) uniquely identifying the axis ..
+{:.green}
+* C: 0 upon success.
+{:.blue}
+* Python: upon success, a positive integer (the “handle”) uniquely identifying the axis, or if an error is encountered an exception is raised.
+{:.coral}
+
+
+---
+
+### cmor_grid()
+
+Fortran: grid_id = cmor_grid(axis_ids, latitude, longitude, [latitude_vertices], [longitude_vertices], [area]) 
+{:.green}
+
+C: error_flag = cmor_grid(int *grid_id, int ndims, int *axis_ids, char type, void *latitude, void *longitude, int nvertices, void *latitude_vertices, void *longitude_vertices, void *area)
+{:.blue}
+
+Python: grid_id = grid( axis_ids, latitude, longitude, latitude_vertices=None, longitude_vertices=None, area=None)
+{:.coral}
+
+*Description:* Define a grid to be associated with data, including the latitude and longitude arrays. The grid can be structured with up to 6 dimensions. These dimensions, which may be simple “index” axes, must be defined via cmor_axis prior to calling cmor_grid. This function returns a "handle" (grid_id) that uniquely identifies the grid (and its data/metadata) to be written.  The grid_id will subsequently be passed by the user to other CMOR functions.  The cmor_grid function will typically be invoked to define each grid necessary for the experiment (e.g ocean grid, vegetation grid, atmosphere grid, etc…).  There is no need to call this function in the case of a Cartesian lat/lon grid.  In this case, simply define the latitude and longitude axes and pass their id’s (“handles”) to cmor_variable.
+
+*Arguments:*
+
+* **grid_id** = the “handle”: a positive integer  returned by CMOR, which uniquely identifies the grid defined in this call to CMOR and subsequently can be used in calls to CMOR.
+
+* **ndims** = number of dimensions needed to define the grid. Namely the number of elements from axis_ids that will be used.
+
+* **axis_ids** = array containing the axis_s returned by cmor_axis when defining the axes constituing the grid.
+
+* **latitude** = array containing the grid’s latitude information (ndim dimensions) 
+
+* **longitude** = array containing the grid’s longitude information (ndim dimensions) 
+
+* **[latitude_vertices]** = array containing the grid’s latitude vertices information (ndim+1 dimensions). The vertices dimension must be the fastest varying dimension of the array (i.e first one in Fortran, last one in C, last one in Python) 
+
+* **[longitude_vertices]** = array containing the grid’s longitude vertices information (ndim+1 dimensions). The vertices dimension must be the fastest varying dimension of the array (i.e first one in Fortran, last one in C, last one in Python) 
+
+* **[area]** = array containing the grid’s  area information (ndim) 
+
+Returns: 
+
+* Fortran: a positive integer if an error is encountered; otherwise returns a negative integer (the “handle”) uniquely identifying the grid.
+{:.green}
+* C: 0 upon success.
+{:.blue}
+* Python: upon success, a positive integer (the “handle”) uniquely identifying the axis, or if an error is encountered an exception is raised.
+{:.coral}
+
+
+---
+
 ### cmor_set_grid_mapping()
 
 Fortran: error_flag = cmor_set_grid_mapping(grid_id, mapping_name, parameter_names, parameter_values, parameter_units)
