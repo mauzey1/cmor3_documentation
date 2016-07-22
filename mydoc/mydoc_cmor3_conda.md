@@ -59,7 +59,7 @@ permalink: /mydoc_cmor3_conda/
   * Create your CMOR environment with anaconda.
 
     ```
-    conda create -n [YOUR_ENV_NAME_HERE] -c pcmdi cmor
+    conda create -n [YOUR_ENV_NAME_HERE] -c pcmdi -c uvcdat cmor
     source activate [YOUR_ENV_NAME_HERE]
     conda env list 
     conda create -n [YOUR_ENV_NAME_HERE] --clone ENV 
