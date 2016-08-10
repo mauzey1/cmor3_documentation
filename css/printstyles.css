@@ -46,7 +46,8 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
 
 
 @page {
-    margin: 30pt 45pt 30pt 35pt;
+    margin: 30pt 45pt 30pt 35pt; 
+/*    margin: 60pt 90pt 60pt 90pt;  */
     font-family: sans-serif;
     font-style:none;
     color: gray;
@@ -81,7 +82,9 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
     margin-bottom:200px;
 }
 
-
+.printTitleImage {
+    max-width: 250px;
+}
 
 #navig {
     /*page-break-before: always;*/
