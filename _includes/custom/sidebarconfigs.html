@@ -3,6 +3,9 @@
 
 {% elsif page.sidebar == "tags_sidebar" %}
 {% assign sidebar = site.data.sidebars.tags_sidebar.entries %}
+
+{% else %}
+{% assign sidebar = site.data.sidebars.mydoc_sidebar.entries %}
 {% endif %}
 
 
