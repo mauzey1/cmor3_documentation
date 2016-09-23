@@ -6,8 +6,30 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_CV/
 ---
 
+### CMIP6 Control vocabulary minimum requirements. 
+
+   * CMOR 3 required a new Control Vocabulary file which must contains 4 mandatory keys for CMIP6.
+       * institutions_ids:  A dictionary of of registered institution IDs with a description.
+       * source_ids:  A dictionary of registered source IDS (model) with a ```specific``` description.
+       * experiment_ids:  A dictionary of experiment_ids (CMIP6) pointing to a dictionary  of ```specific``` metadata.
+       * grid_labels:  A dictionary of grid labels(gr, gn, ...) pointing to a grid_resolution for the selected grid.
+
+Example
+
+```json
+{
+"CV": {
+    "institution_ids": { "BNU":"GCESS, BNU, Beijing, China" },
+    "source_ids": { "CESM1-CAM5": "CESM1 (CAM5): model version ca. 2009" },
+    "experiment_ids": { "piControl": { } },
+    "grid_labels": { "gr":     { "grid_resolution":"5 km" } }
+   }
+}
+```
+
 ### To register, activities, sources or institutions
   * Contact: [cmor@listserv.llnl.gov](mailto:cmor@listserv.llnl.gov)
+
 
 ### CMIP6 required global attributes
 
