@@ -7,8 +7,6 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_api/
 ---
 
-### testing2()
-
 ### cmor_setup()
 
 Fortran: error_flag = cmor_setup(inpath='./', netcdf_file_action=CMOR_PRESERVE, set_verbosity=CMOR_NORMAL, exit_control=CMOR_NORMAL, logfile, create_subdirectories)
