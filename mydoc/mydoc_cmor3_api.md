@@ -6,7 +6,6 @@ tags: [getting_started]
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_api/
 ---
-### testing()
 
 ### cmor_setup()
 
