@@ -1,11 +1,11 @@
 destination: _site/
 url: "http://127.0.0.1:4005"
-baseurl: "/pdf"
+baseurl: "/"
 port: 4005
 output: pdf
 product: mydoc
 print_title: CMOR 
-print_subtitle: version 3.1
+print_subtitle: version 3.2
 output: pdf
 defaults:
   -
