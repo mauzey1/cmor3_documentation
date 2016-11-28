@@ -33,7 +33,7 @@ permalink: /mydoc_cmor3_conda/
 
     # install cmor, it will also install cdms2.
     # ------------------------------------------------
-    conda install cmor -c pcmdi -c uvcdat
+    conda install -c conda-forge -c pcmdi -c uvcdat cmor
 
     # Clone the CMIP6 table to your working directory.
     # ------------------------------------------------
@@ -59,7 +59,7 @@ permalink: /mydoc_cmor3_conda/
   * Create your CMOR environment with anaconda.
 
     ```
-    conda create -n [YOUR_ENV_NAME_HERE] -c pcmdi -c uvcdat cmor
+    conda create -n [YOUR_ENV_NAME_HERE] -c conda-forge -c pcmdi -c uvcdat cmor
     source activate [YOUR_ENV_NAME_HERE]
     conda env list 
     conda create -n [YOUR_ENV_NAME_HERE] --clone ENV 
