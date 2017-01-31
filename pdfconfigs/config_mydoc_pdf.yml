@@ -1,9 +1,10 @@
-destination: _site/
+destination: ../doc_pdf
 url: "http://127.0.0.1:4005"
-baseurl: "/"
+baseurl: "/doc_pdf"
 port: 4005
 output: pdf
 product: mydoc
+print: true
 print_title: CMOR 
 print_subtitle: version 3.2
 output: pdf
