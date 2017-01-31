@@ -38,7 +38,7 @@ entries:
 
     - title: PrePARE
       url: /mydoc_cmip6_validator/
-      output: web
+      output: web, pdf
 
     - title: PDF
       url: /pdf/
