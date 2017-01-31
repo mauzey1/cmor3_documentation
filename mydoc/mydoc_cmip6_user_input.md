@@ -15,7 +15,11 @@ permalink: /mydoc_cmip6_user_input/
 
 [CMIP6_global_attributes_filenames_CVs.doc](https://docs.google.com/document/d/1h0r8RZr_f3-8egBMMh7aqLwy3snpD6_MrDz1q8n5XUk)
 
-* *_control_vocabulary_file*:"Specify Control Vocabulary file name"
+* *_control_vocabulary_file*:"Specify Control Vocabulary file name -- default: CMIP6_CV.json"
+
+* *_AXIS_ENTRY_FILE*:        "Specify Coordinate table file(axes) -- default: CMIP6_coordinate.json"
+
+* *_FORMULA_VAR_FILE*:       "Speciry Formula terms table file -- defalut: CMIP6_formula_terms.json"
 
 * *_cmip6_option*:           "used to trigger validation for CMIP6 only."
 
