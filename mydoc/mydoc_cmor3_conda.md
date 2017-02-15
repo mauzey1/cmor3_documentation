@@ -30,10 +30,10 @@ permalink: /mydoc_cmor3_conda/
   * Run the following command
    
     ```bash
-
     # install cmor, it will also install cdms2.
     # ------------------------------------------------
-    conda install -c conda-forge -c pcmdi -c uvcdat cmor
+    conda create -n CMOR -c conda-forge -c pcmdi -c uvcdat cmor
+    source activate CMOR
 
     # Clone the CMIP6 table to your working directory.
     # ------------------------------------------------
@@ -48,20 +48,19 @@ permalink: /mydoc_cmor3_conda/
     # Create a softlink of your tables in your working directory.
     # -----------------------------------------------------------
     ln -s cmip6-cmor-tables/Tables .
-
-    # Set the UDUNITS2_XML_PATH to your anaconda installation.
-    # -----------------------------------------------------------
-    export UDUNITS2_XML_PATH=${HOME}/anaconda/share/udunits/udunits2.xml
     ```
 
 ## Conda environment
 
-  * Create your CMOR environment with anaconda.
+  * Create your different CMOR environment with anaconda.
 
     ```
     conda create -n [YOUR_ENV_NAME_HERE] -c conda-forge -c pcmdi -c uvcdat cmor
     source activate [YOUR_ENV_NAME_HERE]
     conda env list 
+    
+    or 
+
     conda create -n [YOUR_ENV_NAME_HERE] --clone ENV 
     ```
 
