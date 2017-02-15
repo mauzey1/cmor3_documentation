@@ -48,6 +48,12 @@ permalink: /mydoc_cmor3_conda/
     # Create a softlink of your tables in your working directory.
     # -----------------------------------------------------------
     ln -s cmip6-cmor-tables/Tables .
+
+    # Note:
+    # -----------------------------------------------------------
+    # UDUNITS2_XML_PATH is set automatically by activating CMOR. 
+    # export UDUNITS2_XML_PATH=${CONDA_PREFIX}/share/udunits/udunits2.xml
+    #
     ```
 
 ## Conda environment
