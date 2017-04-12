@@ -488,6 +488,44 @@ Returns:
 
 ---
 
+### cmor_set_deflate()
+
+Fortran: error_flag = cmor_set_deflate(var_id, shuffle, deflate, deflate_level)
+{:.green}
+
+C: error_flag = cmor_set_deflate(int var_id, int shuffle, int deflate, int deflate_level) 
+{:.blue} 
+
+Python: set_deflate(ar_id, shuffle, deflate, deflate_level)
+{:.coral} 
+
+
+*Description:* Sets netCDF4 shuffle and compression on a cmor variable.
+
+*Arguments*:
+
+  * **var_id** = the cmor variable id
+
+  * **shuffle** = if true, turn on netCDF the shuffle filter
+
+  * **deflate** = if true, turn on the deflate filter at the level specified by the deflate_level parameter
+
+  * **deflate_level** = if the deflate parameter is non-zero, deflate variable using value. Must be between 0 and 9
+
+Returns upon success:
+
+* Fortran: 0
+{:.green}
+
+* C: 0
+{:.blue} 
+
+* Python: 0
+{:.coral} 
+
+
+---
+
 ### cmor_set_variable_attribute()
 
 
