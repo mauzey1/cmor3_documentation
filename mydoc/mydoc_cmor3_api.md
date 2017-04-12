@@ -496,7 +496,7 @@ Fortran: error_flag = cmor_set_deflate(var_id, shuffle, deflate, deflate_level)
 C: error_flag = cmor_set_deflate(int var_id, int shuffle, int deflate, int deflate_level) 
 {:.blue} 
 
-Python: set_deflate(ar_id, shuffle, deflate, deflate_level)
+Python: set_deflate(var_id, shuffle, deflate, deflate_level)
 {:.coral} 
 
 
