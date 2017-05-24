@@ -6,6 +6,14 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmip6_validator/
 ---
 
+### Note
+
+PrePARE depends on CDMS to work, in order to use PrePARE please follow these instructions.
+
+ * [Anaconda installation](https://cmor.llnl.gov/mydoc_cmor3_conda/)
+
+PrePARE has been created to validate CMIP6 data before publishing files to ESGF.  It may not work properly on CMIP5 files.
+
 ### Usage
 ```
 PrePARE [-h] [--variable VARIABLE] cmip6_table infile [outfile]
