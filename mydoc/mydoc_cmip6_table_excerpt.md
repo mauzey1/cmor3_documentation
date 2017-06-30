@@ -17,7 +17,6 @@ permalink: /mydoc_cmip6_table_excerpt/
         "product": "output", 
         "cmor_version": "3.0", 
         "Conventions": "CF-1.6 CMIP-6.0", 
-        "frequency": "mon", 
         "table_id": "Table Amon", 
         "data_specs_version": "3.0", 
         "generic_levels": "alevel alevhalf", 
@@ -175,6 +174,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "rsutcs": {
             "comment": "", 
             "dimensions": "longitude latitude time", 
+            "frequency": "mon", 
             "positive": "up", 
             "valid_min": "0", 
             "long_name": "TOA Outgoing Clear-Sky Shortwave Radiation", 
@@ -192,6 +192,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "tas": {
             "comment": "near-surface (usually, 2 meter) air temperature", 
             "dimensions": "longitude latitude time height2m", 
+            "frequency": "mon", 
             "positive": "", 
             "valid_min": "180.6", 
             "long_name": "Near-Surface Air Temperature", 
@@ -209,6 +210,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "tasforecast": {
             "comment": "near-surface (usually, 2 meter) air temperature", 
             "dimensions": "longitude latitude time height2m forecast", 
+            "frequency": "mon", 
             "positive": "", 
             "valid_min": "180.6", 
             "long_name": "Near-Surface Air Temperature", 
@@ -226,6 +228,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "rldscs": {
             "comment": "", 
             "dimensions": "longitude latitude time", 
+            "frequency": "mon", 
             "positive": "down", 
             "valid_min": "33.55", 
             "long_name": "Surface Downwelling Clear-Sky Longwave Radiation", 
@@ -243,6 +246,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "n2oglobal": {
             "comment": "", 
             "dimensions": "time", 
+            "frequency": "mon", 
             "positive": "", 
             "valid_min": "", 
             "long_name": "Global Mean Mole Fraction of N2O", 
@@ -260,6 +264,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "ts": {
             "comment": "'skin' temperature (i.e., SST for open ocean)", 
             "dimensions": "longitude latitude time", 
+            "frequency": "mon", 
             "positive": "", 
             "valid_min": "176.8", 
             "long_name": "Surface Temperature", 
@@ -277,6 +282,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "clt": {
             "comment": "cloud area fraction", 
             "dimensions": "longitude latitude time", 
+            "frequency": "mon", 
             "positive": "", 
             "valid_min": "-0.0001822", 
             "long_name": "Total Cloud Fraction", 
@@ -294,6 +300,7 @@ permalink: /mydoc_cmip6_table_excerpt/
         "tasmax": {
             "comment": "maximum near-surface (usually, 2 meter) air temperature (add cell_method attribute 'time: max')", 
             "dimensions": "longitude latitude time height2m", 
+            "frequency": "mon", 
             "positive": "", 
             "valid_min": "181.9", 
             "long_name": "Daily Maximum Near-Surface Air Temperature", 

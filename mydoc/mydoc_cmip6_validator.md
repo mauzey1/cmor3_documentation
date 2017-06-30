@@ -45,9 +45,9 @@ PrePARE will verify that all attributes in the input file are present and confor
 
   * Only experiments found in the Control Vocabulary files are accepted for CMIP6 publication. A list of [experiment_ids](https://github.com/PCMDI/cmip6-cmor-tables/blob/master/Tables/CMIP6_CV.json#L548) have been pre-defined including mandatory attributes.  A warning will be displayed if one experiment attribute is missing or is not properly set by your program.
 
-  * grid and grid_resolution are mandatory global attributes in CMIP6.  PrePARE will make sure that these attributes are conformed to one of the following syntax:
+  * grid and nominal_resolution are mandatory global attributes in CMIP6.  PrePARE will make sure that these attributes are conformed to one of the following syntax:
 
-     |  grid              |  grid_resolution |
+     |  grid              |  nominal_resolution |
      |--------------------|------------------|
      | gs1x1              |  1x1 degree  |
      | gs1x1 or gn0 to gn9|  1x1 degree  |
