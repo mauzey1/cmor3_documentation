@@ -13,13 +13,15 @@ permalink: /mydoc_cmor3_c/
 ```json
 {
            "_control_vocabulary_file": "CMIP6_CV.json",
+           "_AXIS_ENTRY_FILE":         "CMIP6_coordinate.json",
+           "_FORMULA_VAR_FILE":        "CMIP6_formula_terms.json",
+
+           "#_cmip6_option":          "Trigger cmip6 specific validations",
            "_cmip6_option":           "CMIP6",
 
            "tracking_prefix":        "hdl:21.14100",
            "activity_id":            "ISMIP6",
 
-           "branch_method":          "standard",
-           "branch_time_in_child":   "365.0",
 
            "#output":                "Output Path where files are written",
            "outpath":                "CMIP6",
@@ -33,7 +35,6 @@ permalink: /mydoc_cmor3_c/
            "parent_mip_era":         "N/A",
            "mip_era":                "CMIP6",
            "calendar":               "360_day",
-           "branch_time":            "1.34",
 
            "realization_index":      "11",
            "initialization_index":   "1",
@@ -47,7 +48,7 @@ permalink: /mydoc_cmor3_c/
            "history":                "Output from archivcl_A1.nce/giccm_03_std_2xCO2_2256.",
 
            "#comment":               "Not required",
-           "comment":                "Equilibrium reached after 30-year spin-up after which data were output starting with nominal date of January 2030",
+           "comment":                "",
 
            "#references":            "Not required",
            "references":             "Model described by Koder and Tolkien (J. Geophys. Res., 2001, 576-591).  Also see http://www.GICC.su/giccm/doc/index.html  2XCO2 simulation described in Dorkey et al. '(Clim. Dyn., 2003, 323-357.)'",
@@ -58,10 +59,17 @@ permalink: /mydoc_cmor3_c/
 
            "institution_id":         "PCMDI",
 
-           "parent_activity_id":     "CMIP",
            "parent_experiment_id":   "histALL",
-           "parent_source_id":       "GFDL-CM2-1",
-           "parent_variant_label":   "r1i1p1f3",
+           "parent_activity_id":     "ISMIP6",
+           "parent_mip_era":         "CMIP6",
+
+           "parent_source_id":       "PCMDI-test-1-0",
+           "parent_time_units":      "days since 1970-01-01",
+           "parent_variant_label":   "r123i1p33f5",
+
+           "branch_method":          "Spin-up documentation",
+           "branch_time_in_child":   2310.0,
+           "branch_time_in_parent":  12345.0,
 
 
            "#run_variant":           "Description of run variant (Recommended).",
@@ -75,12 +83,13 @@ permalink: /mydoc_cmor3_c/
 
 
            "#output_path_template":   "Template for output path directory using tables keys or global attributes",
-           "output_path_template":    "<activity_id><institution_id><source_id><experiment_id><variant_label><table><variable_id><grid_label><version>",
-           "output_file_template":    "<variable_id><table><experiment_id><source_id><variant_label><grid_label>",
+           "output_path_template":    "<mip_era><activity_id><institution_id><source_id><experiment_id><_member_id><table><variable_id><grid_label><version>",
+           "output_file_template":    "<variable_id><table><source_id><experiment_id><_member_id><grid_label>",
 
-           "license":                  "CMIP6 model data produced by PCMDI is licensed under a Creative Commons Attribution \"Share Alike\" 4.0 International License (http://creativecommons.org/licenses/by/4.0/). Use of the data should be acknowledged following guidelines found at https://pcmdi.llnl.gov/home/CMIP6/citation.html. [Permissions beyond the scope of this license may be available at http://pcmdi.llnl.gov.] Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in data files). The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law."
+           "license":                 "CMIP6 model data produced by Lawrence Livermore PCMDI is licensed under a Creative Commons Attribution ShareAlike 4.0 International License (https://creativecommons.org/licenses). Consult https://pcmdi.llnl.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment. Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file) and at https:///pcmdi.llnl.gov/. The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law."
 
 }
+
 ```
 
 ### C source code
@@ -133,6 +142,8 @@ void read_coords(alats, alons, plevs, bnds_lat, bnds_lon,lon,lat,lev)
   plevs[14]=30;
   plevs[15]=20;
   plevs[16]=10;
+  plevs[17]=5;
+  plevs[18]=1;
 }
 
 void read_time(it, time, time_bnds)
@@ -149,8 +160,93 @@ void read_time(it, time, time_bnds)
   time_bnds[1] = it+1;
 
 }
+
+void read_3d_input_files(it, varname, field,n0,n1,n2)
+     int it,n0,n1,n2;
+     char *varname;
+     double field[];
+{
+  int i,j,k;
+  float factor,offset,max,min;
+  min=-1.e20;
+  max=1.e20;
+   
+  if (strcmp(varname,"CLOUD")==0) {
+    factor = 0.02;
+    offset = -20.;
+  }
+  else if (strcmp(varname,"U")==0) {
+    factor = .08;
+    offset = 45.;
+  }
+  else if (strcmp(varname,"T")==0) {
+    factor = 1.2;
+    offset = -25.;
+    min=161.;
+    max=320.;
+  }
+    
+  for (k=0;k<n2;k++) {
+    for (j=0;j<n1;j++) {
+      for (i=0;i<n0;i++) {
+        field[k*(n0*n1)+j*n0+i] = (k*64 + j*16 + i*4 + it)*factor - offset;
+    if (field[k*(n0*n1)+j*n0+i]<min) field[k*(n0*n1)+j*n0+i]=min;
+    if (field[k*(n0*n1)+j*n0+i]>max) field[k*(n0*n1)+j*n0+i]=max;
+      }
+    }
+  }
+}
+
+void read_2d_input_files(it, varname, field, n0, n1)
+  int it,n0,n1;
+  char *varname;
+  double field[];
+{    
+  int i, j,k;
+  double factor, offset,min,max;
+  double tmp;
   
-#include "reader_2D_3D.h"
+  min=-1.e20;
+  max=1.e20;
+
+  if (strcmp(varname,"LATENT")==0){
+    factor = 5.;
+    offset = 0.;
+    min=-65;
+    max=65.;
+  }
+  else if (strcmp(varname,"TSURF")==0){
+    factor = 2.1;
+    offset = -230.;
+    max=320.;
+  }
+  else if (strcmp(varname,"SOIL_WET")==0){
+    factor = 4.;
+    offset = 0.;
+    max=130.;
+  }
+  else if (strcmp(varname,"PSURF")==0){
+    factor = 1.;
+    offset = -9.4e2;
+  }
+  else if (strcmp(varname,"htov")==0){
+    factor = .5e14;
+    offset = 2.e13;
+    max = 1.492e14;
+    min = 1.46e14;
+  }
+
+  for (j=0;j<n0;j++){
+    for (i=0;i<n1;i++) {
+      tmp = ((double)j*16. + (double)(i)*4. + (double)it)*factor - offset;
+      k= (n0-1-j)*n1+i;
+      field[k] = tmp;
+      if (field[k]<min) field[k]=min;
+      if (field[k]>max) field[k]=max;
+    }
+  }
+}
+  
 
 int main()
      /*
@@ -195,7 +291,7 @@ int main()
 #define   ntimes  2    /* number of time samples to process */
 #define   lon  4       /* number of longitude grid cells   */
 #define   lat  3       /* number of latitude grid cells */
-#define   lev  17       /* number of standard pressure levels */
+#define   lev  19       /* number of standard pressure levels */
 #define   n2d  4       /* number of IPCC Table A1a fields to be */                                      /*     output. */
 #define n3d 3       /* number of IPCC Table A1c fields to  */
                      /*                                be output.   */
@@ -339,7 +435,7 @@ int main()
   strcpy(units,"degrees_east");
   ierr = cmor_axis(&myaxes[2],id,units,lon,&alons,'d',&bnds_lon,2,interval);
 
-  strcpy(id,"plev17");
+  strcpy(id,"plev19");
   strcpy(units,"hPa");
   ierr = cmor_axis(&myaxes[3],id,units,lev,&iplevs,'i',NULL,0,interval);
 
@@ -393,7 +489,7 @@ int main()
   myaxes2[3] = myaxes[2];
 
   printf("Test code: defining variables from table 1, %s\n",positive2d[0]);
-  ierr = cmor_variable(&myvars[0],entry2d[0],units2d[0],3,myaxes,'d',NULL,&dtmp2,positive2d[0],varin2d[0],"no history","no future");
+  ierr = cmor_variable(&myvars[0],entry2d[0],units2d[0],3,myaxes,'d',&dtmp,&dtmp2,positive2d[0],varin2d[0],"no history","no future");
   ierr = cmor_variable(&myvars[1],entry3d[2],units3d[2],4,myaxes2,'d',NULL,&dtmp2,NULL,varin3d[2],"no history","no future");
 
   printf("Test code: definig tas\n");
@@ -453,5 +549,6 @@ int main()
   ierr = cmor_close();
   return( 0 );
 }
+
 ```
 

@@ -12,14 +12,16 @@ permalink: /mydoc_cmor3_fortran/
 
 ```json
 {
+           "#_keys": "Used as CMOR internal variables",
+
+           "#Input_files":  "Specify CMOR3 input files", 
            "_control_vocabulary_file": "CMIP6_CV.json",
+           "_AXIS_ENTRY_FILE":         "CMIP6_coordinate.json",
+           "_FORMULA_VAR_FILE":        "CMIP6_formula_terms.json",
            "_cmip6_option":           "CMIP6",
 
            "tracking_prefix":        "hdl:21.14100",
            "activity_id":            "ISMIP6",
-
-           "branch_method":          "standard",
-           "branch_time_in_child":   "365.0",
 
            "#output":                "Output Path where files are written",
            "outpath":                "CMIP6",
@@ -33,7 +35,6 @@ permalink: /mydoc_cmor3_fortran/
            "parent_mip_era":         "N/A",
            "mip_era":                "CMIP6",
            "calendar":               "360_day",
-           "branch_time":            "1.34",
 
            "realization_index":      "11",
            "initialization_index":   "1",
@@ -47,7 +48,7 @@ permalink: /mydoc_cmor3_fortran/
            "history":                "Output from archivcl_A1.nce/giccm_03_std_2xCO2_2256.",
 
            "#comment":               "Not required",
-           "comment":                "Equilibrium reached after 30-year spin-up after which data were output starting with nominal date of January 2030",
+           "comment":                "",
 
            "#references":            "Not required",
            "references":             "Model described by Koder and Tolkien (J. Geophys. Res., 2001, 576-591).  Also see http://www.GICC.su/giccm/doc/index.html  2XCO2 simulation described in Dorkey et al. '(Clim. Dyn., 2003, 323-357.)'",
@@ -58,10 +59,17 @@ permalink: /mydoc_cmor3_fortran/
 
            "institution_id":         "PCMDI",
 
-           "parent_activity_id":     "CMIP",
            "parent_experiment_id":   "histALL",
-           "parent_source_id":       "GFDL-CM2-1",
-           "parent_variant_label":   "r1i1p1f3",
+           "parent_activity_id":     "ISMIP6",
+           "parent_mip_era":         "CMIP6",
+
+           "parent_source_id":       "PCMDI-test-1-0",
+           "parent_time_units":      "days since 1970-01-01",
+           "parent_variant_label":   "r123i1p33f5",
+
+           "branch_method":          "Spin-up documentation",
+           "branch_time_in_child":   2310.0,
+           "branch_time_in_parent":  12345.0,
 
 
            "#run_variant":           "Description of run variant (Recommended).",
@@ -75,12 +83,13 @@ permalink: /mydoc_cmor3_fortran/
 
 
            "#output_path_template":   "Template for output path directory using tables keys or global attributes",
-           "output_path_template":    "<activity_id><institution_id><source_id><experiment_id><variant_label><table><variable_id><grid_label><version>",
-           "output_file_template":    "<variable_id><table><experiment_id><source_id><variant_label><grid_label>",
+           "output_path_template":    "<mip_era><activity_id><institution_id><source_id><experiment_id><_member_id><table><variable_id><grid_label><version>",
+           "output_file_template":    "<variable_id><table><source_id><experiment_id><_member_id><grid_label>",
 
-           "license":                  "CMIP6 model data produced by PCMDI is licensed under a Creative Commons Attribution \"Share Alike\" 4.0 International License (http://creativecommons.org/licenses/by/4.0/). Use of the data should be acknowledged following guidelines found at https://pcmdi.llnl.gov/home/CMIP6/citation.html. [Permissions beyond the scope of this license may be available at http://pcmdi.llnl.gov.] Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in data files). The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law."
+           "license":                 "CMIP6 model data produced by Lawrence Livermore PCMDI is licensed under a Creative Commons Attribution ShareAlike 4.0 International License (https://creativecommons.org/licenses). Consult https://pcmdi.llnl.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment. Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file) and at https:///pcmdi.llnl.gov/. The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law."
 
 }
+
 
 ```
 
