@@ -89,7 +89,7 @@ permalink: /mydoc_cmip6_user_input/
 * *further_info_url*:       "http://furtherinfo.es-doc.org/<mip_era>/<institution_id><source_id><experiment_id><sub_experiment_id><variant_label>",
 * *grid*:                  
 * *grid_label*:           
-* *grid_resolution*:     
+* *nominal_resolution*:     
 * *run_variant*:      
 * *source_id*:       
 
