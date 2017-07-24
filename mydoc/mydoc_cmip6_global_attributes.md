@@ -23,7 +23,7 @@ permalink: /mydoc_cmip6_global_attributes/
 * *frequency*                                                                              
 * *grid*                                                                     
 * *grid_label*                                                               
-* *grid_resolution*                                                                       
+* *nominal_resolution*                                                                       
 * *initialization_index*                                                            
 * *institution*                                
 * *institution_id*                                
