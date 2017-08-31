@@ -32,7 +32,7 @@ permalink: /mydoc_cmor3_conda/
     ```bash
     # install cmor, it will also install cdms2.
     # ------------------------------------------------
-    conda create -n CMOR -c conda-forge -c pcmdi -c uvcdat cmor
+    conda create -n CMOR -c conda-forge -c pcmdi  cmor
     source activate CMOR
 
     # Clone the CMIP6 table to your working directory.
