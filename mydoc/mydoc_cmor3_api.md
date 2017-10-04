@@ -529,13 +529,13 @@ Returns upon success:
 ### cmor_set_variable_attribute()
 
 
-Fortran: error_flag = cmor_set_variable_attribute(integer var_id, character(*) name, character(*) value)
+Fortran: error_flag = cmor_set_variable_attribute(integer var_id, character(*) name, character(*) type, character(*) value)
 {:.green}
 
 C: error_flag = cmor_set_variable_attribute(int variable_id, char *attribute_name, char type, void *value)
 {:.blue} 
 
-Python: set_variable_attribute(var_id,name,value)
+Python: set_variable_attribute(var_id,name,type,value)
 {:.coral} 
 
 
