@@ -8,14 +8,18 @@ permalink: /mydoc_cmip6_table_excerpt/
 
 ### WCRP Data Request links
 
-## MIP Tables in the CMIP6 Data Request
-
 The names of the MIP tables are constructed using the tokens described below, and a frequency token. The frequency is generally taken from the CIP6 frequency vocabulary, except for the "monClim" frequency, which is abbreviated to "clim".
+*  MIP Tables in the CMIP6 Data Request
+
 [about mip table](https://earthsystemcog.org/projects/wip/mip_table_about)
 
-## Table List
+* **WCRP Table List**
 
-[mip tables list](http://clipc-services.ceda.ac.uk/dreq/index/miptable.html)
+    Here is the WCRP [mip tables list](http://clipc-services.ceda.ac.uk/dreq/index/miptable.html)
+
+* **Cmor Tables**
+
+    Corresponding CMOR3 CMIP6 tables to link above can be found [here](https://github.com/PCMDI/cmip6-cmor-tables/tree/master/Tables).
 
 ### Header
 
