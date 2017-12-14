@@ -28,7 +28,7 @@ The names of the MIP tables are constructed using the tokens described below, an
         "approx_interval": "30.00000", 
         "realm": "atmos", 
         "product": "output", 
-        "cmor_version": "3.0", 
+        "cmor_version": "3.3", 
         "Conventions": "CF-1.6 CMIP-6.0", 
         "table_id": "Table Amon", 
         "data_specs_version": "3.0", 
