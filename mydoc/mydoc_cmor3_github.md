@@ -21,15 +21,15 @@ cd build
 
 #### Retrieve sources
 
-* [http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.17.tar](http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.17.tar) or latest
+* [https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.18/src/hdf5-1.8.18.tar.gz](https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.18/src/hdf5-1.8.18.tar.gz)
 * [ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.4.0.tar.gz](ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.4.0.tar.gz) or latest
-* [ftp://ftp.unidata.ucar.edu/pub/udunits/udunits-2.2.20.tar.gz](ftp://ftp.unidata.ucar.edu/pub/udunits/udunits-2.2.20.tar.gz) or latest
+* [ftp://ftp.unidata.ucar.edu/pub/udunits/udunits-2.2.26.tar.gz](ftp://ftp.unidata.ucar.edu/pub/udunits/udunits-2.2.26.tar.gz) or latest
 * [http://www.mirrorservice.org/sites/ftp.ossp.org/pkg/lib/uuid/uuid-1.6.2.tar.gz](http://www.mirrorservice.org/sites/ftp.ossp.org/pkg/lib/uuid/uuid-1.6.2.tar.gz) or latest
 
 ```bash
-tar xf hdf5-1.8.17.tar
+tar xf hdf5-1.8.18.tar
 tar xzf netcdf-4.4.0.tar.gz
-tar xzf udunits-2.2.20.tar.gz
+tar xzf udunits-2.2.26.tar.gz
 tar xzf uuid-1.6.2.tar.gz
 ```
 
