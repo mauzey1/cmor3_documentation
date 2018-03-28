@@ -45,7 +45,7 @@ permalink: /mydoc_contacts/
 
 1. INTERACTING WITH LISTSERV BY EMAIL *
 
-    * You may leave the list at any time by sending a `SIGNOFF CMOR` command (include `?SIGNOFF CMOR?` in the email body to: [LISTSERV@LISTSERV.LLNL.GOV](mailto:LISTSERV@LISTSERV.LLNL.GOV))
+    * You may leave the list at any time by sending a `SIGNOFF CMOR` command (include `SIGNOFF CMOR` in the email body to: [LISTSERV@LISTSERV.LLNL.GOV](mailto:LISTSERV@LISTSERV.LLNL.GOV))
 
     * Or by sending a blank email to: [CMOR-signoff-request@LISTSERV.LLNL.GOV](mailto:CMOR-signoff-request@LISTSERV.LLNL.GOV)
 
@@ -55,7 +55,7 @@ permalink: /mydoc_contacts/
 
     * This list is available in digest form. If you wish to receive the digested version of the postings, then issue a `SET CMOR DIGEST` command.
 
-    * Please note that it is presently possible for other people to determine that you are signed up to the list using the REVIEW command, which returns the email address and name of all the subscribers (include ?Review CMOR? in the email body) to:  [LISTSERV@LISTSERV.LLNL.GOV](mailto:LISTSERV@LISTSERV.LLNL.GOV)
+    * Please note that it is presently possible for other people to determine that you are signed up to the list using the REVIEW command, which returns the email address and name of all the subscribers (include `Review CMOR` in the email body) to:  [LISTSERV@LISTSERV.LLNL.GOV](mailto:LISTSERV@LISTSERV.LLNL.GOV)
 
     * If you do not want your name to be visible, then just issue a `SET CMOR CONCEAL` command.
 
