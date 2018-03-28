@@ -25,7 +25,7 @@ permalink: /mydoc_cmip6_user_input/
 
 * *activity_id*:             "Specify an activity PMIP, GeoMIP"
 
-* *output*:                  "Output Path where files are written -- must be created by the user."
+* *output*:                  "Root directory where files are written -- must be created by the user."
 
 * *experiment_id*:           "Correspond to id found in \"_control_vocabulary_file\""
 
