@@ -23,7 +23,6 @@ where:
   * __-h__ display sysnopsis of the program
 
   * __--variable__ specify the geophysical variable created. 
-    * Default: PrePARE selects the variable containing metadata `history`.
 
   * __cmip6_table__ correspond to a CMIP6 JSON table.  
     * [CMIP6 Amon tables](https://github.com/PCMDI/cmip6-cmor-tables/blob/master/Tables/CMIP6_Amon.json)
