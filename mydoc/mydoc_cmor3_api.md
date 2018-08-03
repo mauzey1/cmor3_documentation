@@ -1,7 +1,7 @@
 ---
 title: CMOR Application program interface (API)
 keywords: documentation 
-last_updated: June 12, 2016
+last_updated: August 3rd, 2018
 tags: [getting_started]
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_api/
@@ -771,3 +771,49 @@ Returns:
 
 ---
 
+### cmor_get_terminate_signal()
+
+Fortran: signal_code = cmor_get_terminate_signal()
+{:.green}
+
+C: signal_code = cmor_get_terminate_signal()
+{:.blue} 
+
+Python: signal_code = get_terminate_signal()
+{:.coral} 
+
+*Description:* Get the current value of the signal code issue by CMOR's C when encountering a termination error. Initially this is set to -999. If the user does not set it then the first call to cmor_setup will set the signal to SIGTERM for C and Python and to SIGINT for FORTRAN. FORTRAN does exit nicely with SIGTERM, hence the different default values
+
+Returns upon success:
+
+* Fortran: the current signal code
+{:.green}
+
+* C: the current signal code
+{:.blue} 
+
+* Python: the current signal code
+{:.coral} 
+
+
+---
+
+### cmor_set_terminate_signal()
+
+Fortran: cmor_set_terminate_signal(signal)
+{:.green}
+
+C: cmor_set_terminate_signal(int signal)
+{:.blue} 
+
+Python: set_terminate_signal(signal)
+{:.coral} 
+
+*Description:* Set sthe signal code to send uppon termination from an error
+
+*Arguments:*
+
+  * **[signal]** = an integer representing the signal code desired
+
+
+---

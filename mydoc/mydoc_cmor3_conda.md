@@ -22,7 +22,6 @@ permalink: /mydoc_cmor3_conda/
 
     ```
     conda config --set ssl_verify False
-    binstar config --set verify_ssl False # it's not a typo ssl and verify are reversed
     ```
 
 ### Installing
@@ -32,7 +31,7 @@ permalink: /mydoc_cmor3_conda/
     ```bash
     # install cmor, it will also install cdms2.
     # ------------------------------------------------
-    conda create -n CMOR -c conda-forge -c pcmdi  cmor
+    conda create -n CMOR -c conda-forge cmor
     source activate CMOR
 
     # Clone the CMIP6 table to your working directory.
@@ -44,10 +43,6 @@ permalink: /mydoc_cmor3_conda/
     # -----------------------------------------
     export GIT_SSL_NO_VERIFY=true
     git clone https://github.com/PCMDI/cmip6-cmor-tables.git
-
-    # Create a softlink of your tables in your working directory.
-    # -----------------------------------------------------------
-    ln -s cmip6-cmor-tables/Tables .
 
     # Note:
     # -----------------------------------------------------------
@@ -61,17 +56,16 @@ permalink: /mydoc_cmor3_conda/
   * Create your different CMOR environment with anaconda.
 
     ```
-    conda create -n [YOUR_ENV_NAME_HERE] -c conda-forge -c pcmdi -c uvcdat cmor
+    conda create -n [YOUR_ENV_NAME_HERE] -c conda-forge cmor
     source activate [YOUR_ENV_NAME_HERE]
-    conda env list 
-    
-    or 
-
-    conda create -n [YOUR_ENV_NAME_HERE] --clone ENV 
     ```
 
   * [To learn more about conda environments](http://conda.pydata.org/docs/using/envs.html)
 
+## Obtaining Nighlty builds
 
-
-
+  * Create a dedicated environment for nightly (in between releases code):
+    ```
+    conda create -n [YOUR_ENV_NAME_HERE] -c pcmdi/label/nightly -c conda-forge cmor
+    source activate [YOUR_ENV_NAME_HERE]
+    ```

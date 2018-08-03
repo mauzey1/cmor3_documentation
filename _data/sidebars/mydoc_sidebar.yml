@@ -52,9 +52,9 @@ entries:
       url: /mydoc_cmor3_conda/
       output: web, pdf
 
-#    - title: GitHub
-#      url: /mydoc_cmor3_github/
-#      output: web, pdf
+    - title: Source (GitHub)
+      url: /mydoc_cmor3_github/
+      output: web, pdf
 
   - title: Examples
     output: web, pdf
