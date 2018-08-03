@@ -96,6 +96,7 @@ permalink: /mydoc_cmor3_fortran/
 ### Fortran source code
 
 * [ipcc_test_code.f90](https://github.com/PCMDI/cmor/blob/master/Test/ipcc_test_code.f90)
+* [reader_2D_3D.f90](https://github.com/PCMDI/cmor/blob/master/Test/reader_2D_3D.f90.f90)
 
 ```fortran
 !!$pgf90 -I/work/NetCDF/5.1/include -L/work/NetCDF/5.1/lib -l netcdf -L. -l cmor Test/test_dimensionless.f90 -IModules -o cmor_test
