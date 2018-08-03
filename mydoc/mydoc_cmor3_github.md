@@ -103,5 +103,5 @@ permalink: /mydoc_cmor3_github/
    ```
 
    ```bash
-   python run_tests.py -v2 -H
+   python run_tests.py -v2 -H -n1 Test/test_python_CMIP6_CV*.py
    ```
