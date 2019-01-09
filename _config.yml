@@ -38,13 +38,18 @@ feedback_link: "https://github.com/PCMDI/cmor3_documentation/issues/new"
 highlighter: rouge
 # library used for syntax highlighting
 
-markdown: kramdown
+markdown: CommonMarkGhPages
 kramdown:
  input: GFM
  auto_ids: true
  hard_wrap: false
  syntax_highlighter: rouge
 # filter used to process markdown. note that kramdown differs from github-flavored markdown in some subtle ways
+
+commonmark:
+  options: ["SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table"]
+  syntax_highlighter: rouge
 
 collections:
   tooltips:
