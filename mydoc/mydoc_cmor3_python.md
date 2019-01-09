@@ -1,6 +1,6 @@
 ---
 title: Example Python
-tags: [example]
+tags: [examples,  Python]
 keywords: example, python
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_python/
@@ -20,7 +20,7 @@ permalink: /mydoc_cmor3_python/
 
 * [test_doc.py](https://github.com/PCMDI/cmor/blob/master/Test/test_doc.py)
 
-<details><summary>&#9654 <b>Click to expand Python code</b>
+<details><summary markdown="span"><b>Click to expand Python code</b>
 </summary>
 
 ```python
@@ -76,7 +76,7 @@ cmor.close()
 
 * [example2.py](/mydoc/examples/example2.py)
 
-<details><summary>&#9654 <b>click to expand python code</b></summary>
+<details><summary markdown="span"><b>click to expand Python code</b></summary>
 
 ```python
 import cmor
@@ -128,7 +128,7 @@ cmor.close()
 ```
 
 </details>
-<details><summary>&#9654 <b>click to expand netcdf dump</b></summary>
+<details><summary markdown="span"><b>click to expand netcdf dump</b></summary>
 
 ```
 netcdf hfls_amon_pcmdi-test-1-0_picontrol-withism_r3i1p1f1_gn_201801-201802 {
@@ -269,7 +269,7 @@ data:
 
 * [example3.py](/mydoc/examples/example3.py)
 
-<details><summary>&#9654 <b>Click to expand Python code</b></summary>
+<details><summary markdown="span"><b>Click to expand Python code</b></summary>
 
 ```python
 import cmor
@@ -319,7 +319,7 @@ os.system("ncdump {}".format(filename))
 
 ```
 </details>
-<details><summary>&#9654 <b>Click to expand NetCDF dump</b></summary>
+<details><summary markdown="span"><b>Click to expand NetCDF dump</b></summary>
 
 ```
 netcdf ta_Amon_PCMDI-test-1-0_piControl-withism_r3i1p1f1_gn_201801-201802 {
@@ -575,7 +575,7 @@ data:
 
 * [example4.py](/mydoc/examples/example4.py)
 
-<details><summary>&#9654 <b>Click to expand Python code</b></summary>
+<details><summary markdown="span"><b>Click to expand Python code</b></summary>
 
 ```python
 import cmor
@@ -619,7 +619,7 @@ print("Stored in:", filename)
 cmor.close()
 ```
 </details>
-<details><summary>&#9654 <b>Click to expand NetCDF dump</b></summary>
+<details><summary markdown="span"><b>Click to expand NetCDF dump</b></summary>
 
 ```
 netcdf tas_Amon_PCMDI-test-1-0_piControl-withism_r3i1p1f1_gn_201801-201802 {
@@ -767,7 +767,7 @@ data:
 
 * [example5.py](/mydoc/examples/example5.py)
 
-<details><summary>&#9654 <b>Click to expand Python code</b></summary>
+<details><summary markdown="span"><b>Click to expand Python code</b></summary>
 
 ```python
 import cmor
@@ -819,7 +819,7 @@ os.system("ncdump {}".format(filename))
 ```
 
 </details>
-<details><summary>&#9654 <b>Click to expand NetCDF dump</b></summary>
+<details><summary markdown="span"><b>Click to expand NetCDF dump</b></summary>
 
 ```
 netcdf htovgyre_Omon_PCMDI-test-1-0_piControl-withism_r3i1p1f1_gn_201801-201802 {
@@ -951,7 +951,7 @@ data:
 
 * [example6.py](/mydoc/examples/example6.py)
 
-<details><summary>&#9654 <b>Click to expand Python code</b></summary>
+<details><summary markdown="span"><b>Click to expand Python code</b></summary>
 
 ```python
 import cmor
@@ -1082,7 +1082,7 @@ os.system("ncdump {}".format(filename))
 ```
 
 </details>
-<details><summary>&#9654 <b>Click to expand NetCDF dump</b></summary>
+<details><summary markdown="span"><b>Click to expand NetCDF dump</b></summary>
 
 ```
 netcdf cl_Amon_PCMDI-test-1-0_piControl-withism_r3i1p1f1_gn_201801-201802 {

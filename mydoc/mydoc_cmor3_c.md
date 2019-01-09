@@ -1,6 +1,6 @@
 ---
 title: C example
-tags: [examples]
+tags: [examples, C]
 keywords: example, C
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_c/
@@ -9,6 +9,8 @@ permalink: /mydoc_cmor3_c/
 ### CMOR user input
 
 * [CMOR_input_example.json](https://github.com/PCMDI/cmor/blob/master/Test/CMOR_input_example.json)
+
+<details><summary markdown="span"><b>Click to expand JSON file</b></summary>
 
 ```json
 {
@@ -89,11 +91,15 @@ permalink: /mydoc_cmor3_c/
 
 
 ```
+</details>
+
 
 ### C source code
 
 * [ipcc_test_code.c](https://github.com/PCMDI/cmor/blob/master/Test/ipcc_test_code.c)
 * [reader_2D_3D.h](https://github.com/PCMDI/cmor/blob/master/Test/reader_2D_3D.h)
+
+<details><summary markdown="span"><b>Click to expand C code</b></summary>
 
 ```c
 #include <time.h>
@@ -501,3 +507,4 @@ int main()
 
 ```
 
+</details>
