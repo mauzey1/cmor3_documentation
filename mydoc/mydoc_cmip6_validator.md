@@ -16,20 +16,32 @@ PrePARE has been created to validate CMIP6 data before publishing files to ESGF.
 
 ### Usage
 ```
-PrePARE [-h] [--variable VARIABLE] cmip6_table infile [outfile]
+PrePARE [-h] [-l [CWD]] [--variable VARIABLE] [--table-path TABLE_PATH]
+        [--max-processes 4] [--all] [--ignore-dir PYTHON_REGEX]
+        [--include-file PYTHON_REGEX] [--exclude-file PYTHON_REGEX]
+        input [input ...]
 ```
 where:
 
-  * __-h__ display sysnopsis of the program
+  * __input__ Input CMIP6 netCDF data to validate. If a directory is submitted all netCDF recursively found will be validated independently.
 
-  * __--variable__ specify the geophysical variable created. 
+  * __-h__ Display synopsis of the program.
 
-  * __cmip6_table__ correspond to a CMIP6 JSON table.  
-    * [CMIP6 Amon tables](https://github.com/PCMDI/cmip6-cmor-tables/blob/master/Tables/CMIP6_Amon.json)
+  * __-l, --log__ Logfile directory. Default is the working directory. If not, standard output is used. Only available in multiprocessing mode.
+  
+  * __--variable__ Specify geophysical variable name. If not variable is deduced from filename. 
 
-  * __infile__  netCDF CMIP6 file to be published by ESGF.
+  * __--table-path__ Specify the CMIP6 CMOR tables path (JSON file). If not submitted read the CMIP6_CMOR_TABLES environment variable if it exists. If a directory is submitted table is deduced from filename (default is "./Tables").  
+    * [CMIP6 tables](https://github.com/PCMDI/cmip6-cmor-tables/)
 
-  * __outfile__ write output into a log file
+  * __--max-processes__  Maximum number of processes to simultaneously validate several files. Set to one seems sequential processing (default). Set to "-1" uses all available resources as returned by "multiprocessing.cpu_count()".
+  
+  * __--all__ Show all results. Default only shows error(s) (i.e., file(s) not compliant).
+  
+  * __--ignore-dir__ Filter directories NON-matching the regular expression. Default ignores paths with folder name(s) starting with ".".
+  
+  * __--exclude-file__ Filter files NON-matching the regular expression. Duplicate the flag to set several filters. Default only exclude hidden files (with names not starting with ".").
+
 
 ### Validation
 
