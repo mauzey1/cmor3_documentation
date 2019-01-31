@@ -1,6 +1,6 @@
 ---
-title: Control Vocabulary (CMIP6)
-tags: [examples, Control Vocabulary, CMIP6]
+title: Controlled Vocabulary (CMIP6)
+tags: [examples, Controlled Vocabulary, CMIP6]
 keywords: example, C, Fortran, Python
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_CV/
@@ -8,7 +8,7 @@ permalink: /mydoc_cmor3_CV/
 
 ### CMIP6 Control vocabulary minimum requirements. 
 
-   * CMOR 3 required a new Control Vocabulary file which must contains 4 mandatory keys for CMIP6.
+   * CMOR 3 required a new Controlled Vocabulary file which must contains 4 mandatory keys for CMIP6.
        * institutions_ids:  A dictionary of of registered institution IDs with a description.
        * source_ids:  A dictionary of registered source IDS (model) with a ```specific``` description.
        * experiment_ids:  A dictionary of experiment_ids (CMIP6) pointing to a dictionary  of ```specific``` metadata.
