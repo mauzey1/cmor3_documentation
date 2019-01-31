@@ -1,6 +1,6 @@
 ---
 title: Control Vocabulary (CMIP6)
-tags: [examples]
+tags: [examples, Control Vocabulary, CMIP6]
 keywords: example, C, Fortran, Python
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_CV/
@@ -14,7 +14,8 @@ permalink: /mydoc_cmor3_CV/
        * experiment_ids:  A dictionary of experiment_ids (CMIP6) pointing to a dictionary  of ```specific``` metadata.
        * grid_labels:  A dictionary of grid labels(gr, gn, ...) pointing to a native_resolution for the selected grid.
 
-Example
+
+<details><summary markdown="span"><b>Click to expand example JSON file</b></summary>
 
 ```json
 {
@@ -26,6 +27,7 @@ Example
    }
 }
 ```
+</details>
 
 ### To register, activities, sources or institutions
   * Contact: [cmor@listserv.llnl.gov](mailto:cmor@listserv.llnl.gov)
@@ -34,6 +36,8 @@ Example
 ### CMIP6 required global attributes
 
 * [CMIP6_CV.json](https://github.com/PCMDI/cmor/blob/master/TestTables/CMIP6_CV.json)
+
+<details><summary markdown="span"><b>Click to expand example JSON section</b></summary>
 
 ```json
     "required_global_attributes": 
@@ -72,8 +76,11 @@ Example
         "variable_id"
         ],
 ```
+</details>
 
 * CMOR validates required attributes using list of values or regular expression(REGEX)
+
+<details><summary markdown="span"><b>Click to expand example JSON section</b></summary>
 
 ```json
     "required_parent_attributes": [
@@ -90,8 +97,11 @@ Example
 
     "further_info_url": [ "http://furtherinfo.es-doc.org/[[:alpha:]]\\{1,\\}" ],
 ```
+</details>
 
 ### Registered activities 
+
+<details><summary markdown="span"><b>Click to expand example JSON section</b></summary>
 
 ```json
 "activity_id":[
@@ -120,7 +130,11 @@ Example
 ],
 ```
 
+</details>
+
 ### Registered sources
+
+<details><summary markdown="span"><b>Click to expand example JSON section</b></summary>
 
 ```json
 
@@ -129,8 +143,11 @@ Example
         ...
         },
 ```
+</details>
 
 ### Registered institutions
+
+<details><summary markdown="span"><b>Click to expand example JSON section</b></summary>
 
 ```json
     "institution_ids": {
@@ -139,7 +156,11 @@ Example
     },
 ```
 
+</details>
+
 ### valid grids
+
+<details><summary markdown="span"><b>Click to expand example JSON section</b></summary>
 
 ```json
     "grid_labels": {
@@ -156,7 +177,11 @@ Example
 
 ```
 
+</details>
+
 ### Registered experiments
+
+<details><summary markdown="span"><b>Click to expand example JSON section</b></summary>
 
 ```json
 
@@ -193,3 +218,4 @@ experiment_ids": {
 }
 ```
  
+</details>
