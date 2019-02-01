@@ -6,7 +6,7 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_CV/
 ---
 
-### CMIP6 Control vocabulary minimum requirements. 
+### CMIP6 Controlled Vocabulary minimum requirements. 
 
    * CMOR 3 required a new Controlled Vocabulary file which must contains 4 mandatory keys for CMIP6.
        * institutions_ids:  A dictionary of of registered institution IDs with a description.
