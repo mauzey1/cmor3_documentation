@@ -31,12 +31,12 @@ The following input files are typically needed by CMOR:
 
 * The "User Input File" (e.g., CMIP6_input_example.json), which provides user-supplied metadata and configuration directives.
 * A "controlled vocabulary file" (e.g., "CMIP6_CV.json), which concatenates into a single file most of the CMIP6 controlled vocabularies archived at https://github.com/WCRP-CMIP/CMIP6_CVs . This file is updated frequently as additional models and institutions register to participate in CMIP6.
-* A "CMOR Table" (e.g., CMIP6_amon.json), which provides for each variable that might be written by CMOR much of the required metatdata. It also provides additional information that CMOR uses to correctly write the data and to enable certain QC checks.
+* A "CMOR Table" (e.g., CMIP6_Amon.json), which provides for each variable that might be written by CMOR much of the required metatdata. It also provides additional information that CMOR uses to correctly write the data and to enable certain QC checks.
 * A "Vertical Coordinate Formula Terms Table" (e.g., CMIP6_formula_terms.json)
 * A "Coordinates Table" (e.g., CMIP6_coordinate.json) CMIP6
 * CMIP6_grids.json supplements the Coordinates Table with axis information that is sometimes needed in the treatment of unstructured grids.
 
-The files used by CMOR for CMIP6 are archived in https://github.com/PCMDI/cmip6-cmor-tables/tree/master/Tables, and all but the CMIP6_input_example.json file must not be modifed by the user. The CMIP6_input_example.json file must be edited to accurately reflect the output being written by the user (but do not modify the lines of text appearing after the comment line, "#note_CV": " **** The following will be obtained from the CV and do not need to be defined here"). Note that the CMIP6_CV.json file found in https://github.com/PCMDI/cmip6-cmor-tables/tree/master/Tables are updated whenever new models and institutions are registered to participate in CMIP6.
+The files used by CMOR for CMIP6 are archived in [https://github.com/PCMDI/cmip6-cmor-tables/tree/master/Tables](https://github.com/PCMDI/cmip6-cmor-tables/tree/master/Tables), and all but the CMIP6_input_example.json file must not be modifed by the user. The CMIP6_input_example.json file must be edited to accurately reflect the output being written by the user (but do not modify the lines of text appearing after the comment line, "#note_CV": " **** The following will be obtained from the CV and do not need to be defined here"). Note that the CMIP6_CV.json file found in [https://github.com/PCMDI/cmip6-cmor-tables/tree/master/Tables](https://github.com/PCMDI/cmip6-cmor-tables/tree/master/Tables) is updated whenever new models and institutions are registered to participate in CMIP6.
  
 Converting data with CMOR typically involves the following steps (with the CMOR function names given in parentheses):
 
