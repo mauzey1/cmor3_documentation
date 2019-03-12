@@ -9,6 +9,7 @@ permalink: /mydoc_cmor3_conda/
 ### All Platforms System Requirements
 
   * [Anaconda](https://www.continuum.io/)
+    * Note: CMOR3 currently only has support for Python 2.7.  Future versions will support Python 3.
   * Make sure anaconda is in your PATH (assuming ananconda is installed in ${HOME}/anaconda)
 
     ```sh
