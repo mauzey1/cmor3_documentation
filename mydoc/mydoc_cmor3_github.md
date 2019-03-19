@@ -48,10 +48,16 @@ permalink: /mydoc_cmor3_github/
     export CONDA_COMPILERS="clang_osx-64 gfortran_osx-64"
     ```
 
-  * Run the following command
+  * Run the following command to build CMOR for Python 2.7
    
     ```bash
-    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat ossuuid udunits2 hdf5 libnetcdf numpy openssl cdms2 python=2.7 $CONDA_COMPILERS testsrunner
+    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat ossuuid udunits2 hdf5 libnetcdf numpy openssl lazy-object-proxy cdms2 python=2.7 $CONDA_COMPILERS testsrunner
+    ```
+
+  * or, run the following command to build CMOR for Python 3.7
+   
+    ```bash
+    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat ossuuid udunits2 hdf5 libnetcdf numpy openssl lazy-object-proxy cdms2 python=3.7 $CONDA_COMPILERS testsrunner
     ```
   * Activate the conda environment
 
@@ -77,7 +83,7 @@ permalink: /mydoc_cmor3_github/
   Since your environment can use a different name and its location is system dependent use:
 
   ```bash
-  export PREFIX=$(python -c "import sys; print sys.prefix")
+  export PREFIX=$(python -c "import sys; print(sys.prefix)")
   ```
 
   * configure cmor:
@@ -96,12 +102,14 @@ permalink: /mydoc_cmor3_github/
 
 ### Testing the installation
 
-   * Two sets of test can be used
+  Two sets of test can be used
    
+  * C and Fortran tests
    ```bash
    make test
    ```
-
+  * Python tests
    ```bash
+   export PYTHONPATH=Test/
    python run_tests.py -v2 -H -n1 Test/test_python_CMIP6_CV*.py
    ```
