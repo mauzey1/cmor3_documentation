@@ -48,16 +48,18 @@ permalink: /mydoc_cmor3_github/
     export CONDA_COMPILERS="clang_osx-64 gfortran_osx-64"
     ```
 
-  * Run the following command to build CMOR for Python 2.7
+  * Run the following command to build CMOR for your version of Python
+
+    For Python 2.7
    
     ```bash
-    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat ossuuid udunits2 hdf5 libnetcdf numpy openssl lazy-object-proxy cdms2 python=2.7 $CONDA_COMPILERS testsrunner
+    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat libuuid json-c udunits2 hdf5 libnetcdf numpy openssl lazy-object-proxy cdms2 python=2.7 $CONDA_COMPILERS testsrunner
     ```
 
-  * or, run the following command to build CMOR for Python 3.7
+    For Python 3.7
    
     ```bash
-    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat ossuuid udunits2 hdf5 libnetcdf numpy openssl lazy-object-proxy cdms2 python=3.7 $CONDA_COMPILERS testsrunner
+    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat libuuid json-c udunits2 hdf5 libnetcdf numpy openssl lazy-object-proxy cdms2 python=3.7 $CONDA_COMPILERS testsrunner
     ```
   * Activate the conda environment
 
@@ -89,7 +91,7 @@ permalink: /mydoc_cmor3_github/
   * configure cmor:
 
   ```bash
-  ./configure --prefix=$PREFIX --with-python --with-uuid=$PREFIX --with-udunits2=$PREFIX --with-netcdf=$PREFIX  --enable-verbose-test
+  ./configure --prefix=$PREFIX --with-python --with-uuid=$PREFIX --with-json-c=$PREFIX --with-udunits2=$PREFIX --with-netcdf=$PREFIX  --enable-verbose-test
   ```
 
 ### Building CMOR
