@@ -8,8 +8,10 @@ permalink: /mydoc_cmor3_conda/
 
 ### All Platforms System Requirements
 
+  * **CMOR 3.4.0 on conda-forge is only supported for Python 2.7.  For Python 3.6 and 3.7 support, use the latest [nightly build](#obtaining-nighlty-builds).  Future releases on conda-forge will support Python 3.**
+
   * [Anaconda](https://www.continuum.io/)
-    * Note: CMOR3 currently only has support for Python 2.7.  Future versions will support Python 3.
+
   * Make sure anaconda is in your PATH (assuming ananconda is installed in ${HOME}/anaconda)
 
     ```sh
