@@ -32,7 +32,7 @@ permalink: /mydoc_cmor3_conda/
   * Run the following command
    
     ```bash
-    # install cmor, it will also install cdms2.
+    # install cmor
     # ------------------------------------------------
     conda create -n CMOR -c conda-forge cmor
     source activate CMOR
