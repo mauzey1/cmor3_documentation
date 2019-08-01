@@ -8,7 +8,7 @@ permalink: /mydoc_cmip6_validator/
 
 ### Note
 
-PrePARE depends on CDMS to work, in order to use PrePARE please follow these instructions.
+In order to use PrePARE please follow these instructions.
 
  * [Anaconda installation](https://cmor.llnl.gov/mydoc_cmor3_conda/)
 

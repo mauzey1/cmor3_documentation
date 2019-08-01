@@ -8,7 +8,7 @@ permalink: /mydoc_cmor3_conda/
 
 ### All Platforms System Requirements
 
-  * **CMOR 3.4.0 on conda-forge is only supported for Python 2.7.  For Python 3.6 and 3.7 support, use the latest [nightly build](#obtaining-nighlty-builds).  Future releases on conda-forge will support Python 3.**
+  * **CMOR 3.5.0 on conda-forge has support for Python 2.7, 3.6, and 3.7.**
 
   * [Anaconda](https://www.continuum.io/)
 
@@ -32,7 +32,7 @@ permalink: /mydoc_cmor3_conda/
   * Run the following command
    
     ```bash
-    # install cmor, it will also install cdms2.
+    # install cmor
     # ------------------------------------------------
     conda create -n CMOR -c conda-forge cmor
     source activate CMOR
