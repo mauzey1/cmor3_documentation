@@ -55,13 +55,13 @@ permalink: /mydoc_cmor3_github/
     For Python 2.7
    
     ```bash
-    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat six libuuid json-c udunits2 hdf5 libnetcdf=4.6.2 netcdf4 numpy openssl lazy-object-proxy cdms2 python=2.7 $CONDA_COMPILERS testsrunner
+    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat six libuuid json-c udunits2 hdf5 libnetcdf=4.7.3 openblas=0.3.6 netcdf4 numpy openssl lazy-object-proxy cdms2 python=2.7 $CONDA_COMPILERS testsrunner
     ```
 
     For Python 3.7
    
     ```bash
-    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat six libuuid json-c udunits2 hdf5 libnetcdf=4.6.2 netcdf4 numpy openssl lazy-object-proxy cdms2 python=3.7 $CONDA_COMPILERS testsrunner
+    conda create -q -n cmor_dev -c cdat/label/nightly -c conda-forge -c cdat six libuuid json-c udunits2 hdf5 libnetcdf=4.7.3 openblas=0.3.6 netcdf4 numpy openssl lazy-object-proxy cdms2 python=3.7 $CONDA_COMPILERS testsrunner
     ```
   * Activate the conda environment
 
