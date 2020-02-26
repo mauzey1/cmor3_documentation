@@ -22,6 +22,7 @@ port: 4005
 # the port where the preview is rendered. You can leave this as is unless you have other Jekyll builds using this same port that might cause conflicts.
 
 exclude:
+  - vendor/
   - _site
   - _drafts/
   - .idea/
