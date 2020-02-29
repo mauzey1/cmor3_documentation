@@ -1,6 +1,6 @@
 ---
 title: Example Python
-tags: [examples,  Python]
+tags: [examples,  python]
 keywords: example, python
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_python/

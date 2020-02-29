@@ -1,6 +1,6 @@
 ---
 title: Fortran Example
-tags: [examples, FORTRAN]
+tags: [examples, fortran]
 keywords: example, Fortran
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_fortran/

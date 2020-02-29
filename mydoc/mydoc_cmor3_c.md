@@ -1,6 +1,6 @@
 ---
 title: C example
-tags: [examples, C]
+tags: [examples, c]
 keywords: example, C
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_c/
