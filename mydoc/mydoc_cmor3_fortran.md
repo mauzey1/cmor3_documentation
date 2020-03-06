@@ -1,6 +1,6 @@
 ---
 title: Fortran Example
-tags: [examples, FORTRAN]
+tags: [examples, fortran]
 keywords: example, Fortran
 sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_fortran/
@@ -72,7 +72,7 @@ permalink: /mydoc_cmor3_fortran/
 
   "#note":                  " **** The following are set correctly for CMIP6 and should not normally need editing",  
 
-  "_control_vocabulary_file": "CMIP6_CV.json",
+  "_controlled_vocabulary_file": "CMIP6_CV.json",
   "_AXIS_ENTRY_FILE":         "CMIP6_coordinate.json",
   "_FORMULA_VAR_FILE":        "CMIP6_formula_terms.json",
   "_cmip6_option":           "CMIP6",
