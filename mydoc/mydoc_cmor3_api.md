@@ -390,7 +390,7 @@ Fortran: zfactor_id = cmor_zfactor(zaxis_id, zfactor_name, [axis_ids], [units], 
 C: error_flag = cmor_zfactor (int *zfactor_id, int zaxis_id, char *zfactor_name, char *units, int ndims, int axis_ids[], char type, void *zfactor_values, void *zfactor_bounds)
 {:.blue} 
 
-Python: zfactor_id = zfactor(zaxis_id, zfactor_name, units, axis_ids, type, zfactor_values=None, zfactor_bounds=None)
+Python: zfactor_id = zfactor(zaxis_id, zfactor_name, units, axis_ids, data_type, zfactor_values=None, zfactor_bounds=None)
 {:.coral} 
 
 
@@ -439,7 +439,7 @@ Fortran: var_id = cmor_variable([table], table_entry, units, axis_ids, [missing_
 C: error_flag = int cmor_variable(int *var_id, char *table_entry, char *units, int ndims, int axis_ids[], char type, void *missing, double *tolerance, char *positive, char*original_name, char *history, char *comment)
 {:.blue} 
 
-Python: var_id = variable(table_entry, units, axis_ids, type='f', missing_value=None, tolerance = 1.e-4, positive=None, original_name=None, history=None, comment=None)
+Python: var_id = variable(table_entry, units, axis_ids, data_type='f', missing_value=None, tolerance = 1.e-4, positive=None, original_name=None, history=None, comment=None)
 {:.coral} 
 
 
@@ -535,7 +535,7 @@ Fortran: error_flag = cmor_set_variable_attribute(integer var_id, character(\*) 
 C: error_flag = cmor_set_variable_attribute(int variable_id, char *attribute_name, char type, void *value)
 {:.blue} 
 
-Python: set_variable_attribute(var_id,name,type,value)
+Python: set_variable_attribute(var_id,name,data_type,value)
 {:.coral} 
 
 
