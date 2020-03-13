@@ -359,7 +359,7 @@ Python: coord_var_id = time_varying_grid_coordinate(grid_id, table_entry, units,
 
   * **table_entry** = name of the variable (as it appears in the MIP table) that this function defines.
 
-  * **units** = units of the data that will be passed to CMOR by function cmor_write. These units may differ from the units of the data output by CMOR. Whenever possible, this string should be interpretable by udunits (see http://my.unitdata.ucar.edu/content/software/udunits/). In the case of dimensionless quantities the units should be specified consistent with the CF conventions, so for example: percent, units='percent'; for a fraction, units='1'; for parts per million, units='1e-6', etc.).
+  * **units** = units of the data that will be passed to CMOR by function cmor_write. These units may differ from the units of the data output by CMOR. Whenever possible, this string should be interpretable by udunits (see http://my.unitdata.ucar.edu/content/software/udunits/). In the case of dimensionless quantities the units should be specified consistent with the CF conventions, so for example: percent, units='%'; for a fraction, units='1'; for parts per million, units='1e-6', etc.).
 
   * **type** = type of the missing_value, which must be the same as the type of the array that will be passed to cmor_write. The options are: ‘d’ (double), ‘f’ (float), ‘l’ (long) or ‘i’ (int).
 
@@ -454,7 +454,7 @@ Python: var_id = variable(table_entry, units, axis_ids, data_type='f', missing_v
 
   * **table_entry** = name of the variable (as it appears in the MIP table) that this function defines.
 
-  * **units** = units of the data that will be passed to CMOR by function cmor_write. These units may differ from the units of the data output by CMOR. Whenever possible, this string should be interpretable by udunits (see http://my.unitdata.ucar.edu/content/software/udunits/). In the case of dimensionless quantities the units should be specified consistent with the CF conventions, so for example: percent, units='percent'; for a fraction, units='1'; for parts per million, units='1e-6', etc.).
+  * **units** = units of the data that will be passed to CMOR by function cmor_write. These units may differ from the units of the data output by CMOR. Whenever possible, this string should be interpretable by udunits (see http://my.unitdata.ucar.edu/content/software/udunits/). In the case of dimensionless quantities the units should be specified consistent with the CF conventions, so for example: percent, units='%'; for a fraction, units='1'; for parts per million, units='1e-6', etc.).
 
   * **ndims** = number of axes the variable contains (i.e., the rank of the array), which in fact is the number of elements in the axis_ids array that will be processed by CMOR.
 
