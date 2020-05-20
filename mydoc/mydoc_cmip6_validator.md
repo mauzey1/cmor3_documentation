@@ -16,10 +16,11 @@ PrePARE has been created to validate CMIP6 data before publishing files to ESGF.
 
 ### Usage
 ```
-PrePARE [-h] [-l [CWD]] [--variable VARIABLE] [--table-path TABLE_PATH]
-        [--max-processes 4] [--all] [--ignore-dir PYTHON_REGEX]
-        [--include-file PYTHON_REGEX] [--exclude-file PYTHON_REGEX]
-        input [input ...]
+PrePARE  [-h] [-l [CWD]] [--variable VARIABLE] [-v] [--table-path TABLE_PATH] 
+         [--max-processes 4] [--all] [--hide-progress] [--no-text-color] 
+         [--ignore-dir PYTHON_REGEX] [--include-file PYTHON_REGEX] 
+         [--exclude-file PYTHON_REGEX]
+         input [input ...]
 ```
 where:
 
@@ -31,12 +32,18 @@ where:
   
   * __--variable__ Specify geophysical variable name. If not variable is deduced from filename. 
 
+  * __-v, --version__ Version of software.
+
   * __--table-path__ Specify the CMIP6 CMOR tables path (JSON file). If not submitted read the CMIP6_CMOR_TABLES environment variable if it exists. If a directory is submitted table is deduced from filename (default is "./Tables").  
     * [CMIP6 tables](https://github.com/PCMDI/cmip6-cmor-tables/)
 
   * __--max-processes__  Maximum number of processes to simultaneously validate several files. Set to one seems sequential processing (default). Set to "-1" uses all available resources as returned by "multiprocessing.cpu_count()".
   
   * __--all__ Show all results. Default only shows error(s) (i.e., file(s) not compliant).
+
+  * __--hide-progress__ Do not show the percentage of progress / number of files checked while running PrePARE.
+
+  * __--no-text-color__ Remove text color from output.
   
   * __--ignore-dir__ Filter directories NON-matching the regular expression. Default ignores paths with folder name(s) starting with ".".
   
