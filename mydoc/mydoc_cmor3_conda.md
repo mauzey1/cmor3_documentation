@@ -29,13 +29,13 @@ permalink: /mydoc_cmor3_conda/
 
 ### Installing
 
-  * Run the following command
+  * Run the following commands
    
     ```bash
     # install cmor
     # ------------------------------------------------
     conda create -n CMOR -c conda-forge cmor
-    source activate CMOR
+    conda activate CMOR
 
     # Clone the CMIP6 table to your working directory.
     # ------------------------------------------------
@@ -52,6 +52,34 @@ permalink: /mydoc_cmor3_conda/
     # UDUNITS2_XML_PATH is set automatically by activating CMOR. 
     # export UDUNITS2_XML_PATH=${CONDA_PREFIX}/share/udunits/udunits2.xml
     #
+    ```
+
+### Testing
+
+  * Run the following commands
+   
+    ```bash
+    # Install cmor with cdms2 and testsrunner
+    # ------------------------------------------------
+    conda install -n CMOR -c cdat/label/nightly -c cdat -c conda-forge cdms2 testsrunner
+
+    # Clone the CMOR repository to your working directory.
+    # ------------------------------------------------
+    git clone https://github.com/PCMDI/cmor.git
+    cd cmor
+
+    # Update the CMIP6 tables submodule.
+    # ------------------------------------------------
+    git submodule init
+    git submodule update
+
+    # Set PYTHONPATH to the Test directory.
+    # ------------------------------------------------
+    export PYTHONPATH=Test/
+
+    # Run the tests.
+    # ------------------------------------------------
+    python run_tests.py -v2 -H -n1 Test/test_python_CMIP6_CV*.py
     ```
 
 ## Conda environment
