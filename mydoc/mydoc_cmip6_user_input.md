@@ -9,7 +9,7 @@ permalink: /mydoc_cmip6_user_input/
 ### Notes
 
 1. Keys beginning with character **_** will not be written in netCDF file as attribute.  They can be use for template filename of template path.
-1. Keys beginning with charachter **#** can be used as comment.
+1. Keys beginning with character **#** can be used as comment.
 
 ### CMIP6 CMOR User Input
 
