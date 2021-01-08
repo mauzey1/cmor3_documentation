@@ -27,7 +27,7 @@ permalink: /mydoc_cmor3_conda/
     conda config --set ssl_verify False
     ```
 
-### Installing
+### Installing CMOR and PrePARE
 
   * Run the following commands
    

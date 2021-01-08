@@ -96,7 +96,7 @@ permalink: /mydoc_cmor3_github/
   ./configure --prefix=$PREFIX --with-python --with-uuid=$PREFIX --with-json-c=$PREFIX --with-udunits2=$PREFIX --with-netcdf=$PREFIX  --enable-verbose-test
   ```
 
-### Building CMOR
+### Building and installing CMOR and PrePARE
 
   * Run
 
