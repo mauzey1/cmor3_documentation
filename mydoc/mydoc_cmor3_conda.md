@@ -111,7 +111,7 @@ permalink: /mydoc_cmor3_conda/
     make test -o cmor -o python
     ```
 
-## Conda environment
+### Conda environment
 
   * Create your different CMOR environment with anaconda.
 
@@ -122,7 +122,7 @@ permalink: /mydoc_cmor3_conda/
 
   * [To learn more about conda environments](http://conda.pydata.org/docs/using/envs.html)
 
-## Obtaining Nighlty builds
+### Obtaining Nighlty builds
 
   * Create a dedicated environment for nightly (in between releases code):
     ```
