@@ -84,25 +84,25 @@ permalink: /mydoc_cmor3_github/
     ```
   * Set the PREFIX
 
-  Since your environment can use a different name and its location is system dependent use:
+    Since your environment can use a different name and its location is system dependent use:
 
-  ```bash
-  export PREFIX=$(python -c "import sys; print(sys.prefix)")
-  ```
+    ```bash
+    export PREFIX=$(python -c "import sys; print(sys.prefix)")
+    ```
 
   * configure cmor:
 
-  ```bash
-  ./configure --prefix=$PREFIX --with-python --with-uuid=$PREFIX --with-json-c=$PREFIX --with-udunits2=$PREFIX --with-netcdf=$PREFIX  --enable-verbose-test
-  ```
+    ```bash
+    ./configure --prefix=$PREFIX --with-python --with-uuid=$PREFIX --with-json-c=$PREFIX --with-udunits2=$PREFIX --with-netcdf=$PREFIX  --enable-verbose-test
+    ```
 
 ### Building and installing CMOR and PrePARE
 
   * Run
 
-  ```bash
-  make install
-  ```
+    ```bash
+    make install
+    ```
 
 ### Testing the installation
 
