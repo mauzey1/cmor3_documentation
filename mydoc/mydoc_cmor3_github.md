@@ -6,7 +6,7 @@ sidebar: mydoc_sidebar
 permalink: /mydoc_cmor3_github/
 ---
 
-### Obtaining the source code and CMIP6 tables
+### Obtaining the CMOR and PrePARE source code and CMIP6 tables
 
   * Clone the repo from gituhb
     ```bash
